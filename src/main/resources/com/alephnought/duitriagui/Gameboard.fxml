@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="gameBoardPane" prefHeight="725.0" prefWidth="807.0" style="-fx-background-color: #CDEACE;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alephnought.duitriagui.GameboardController">
+    <children>
+      <Group layoutX="597.0" layoutY="600.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" prefHeight="32.0" prefWidth="58.0" style="-fx-background-color: green; -fx-border-color: #000000;" text="1" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land1" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="58.0" prefHeight="122.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Petaling Street   RM 600k " textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand1" layoutX="7.0" layoutY="33.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="486.0" layoutY="600.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" prefHeight="32.0" prefWidth="57.0" style="-fx-background-color: green; -fx-border-color: #000000;" text="2" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land3" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="57.0" prefHeight="122.0" prefWidth="57.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Jonker Street   RM600k" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand3" layoutX="6.0" layoutY="32.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="376.0" layoutY="600.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" prefHeight="29.0" prefWidth="56.0" style="-fx-background-color: transparent;" text="3" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land5" alignment="CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="KLIA" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="13.0" layoutY="79.0">
+               <image>
+                  <Image url="@../../../klia.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <Group layoutX="321.0" layoutY="600.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" minWidth="56.0" prefHeight="32.0" prefWidth="56.0" style="-fx-background-color: blue; -fx-border-color: #000000;" text="4" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land6" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Masjid Jamek" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Times New Roman" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand6" layoutX="5.0" layoutY="33.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="211.0" layoutY="600.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" minWidth="56.0" prefHeight="32.0" prefWidth="56.0" style="-fx-background-color: blue; -fx-border-color: #000000;" text="5" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land8" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Batu Caves" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand8" layoutX="5.0" layoutY="32.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="156.0" layoutY="600.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" minWidth="56.0" prefHeight="32.0" prefWidth="56.0" style="-fx-background-color: blue; -fx-border-color: #000000;" text="6" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land9" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Sri Maha Mariamman Temple" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Times New Roman" size="11.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand9" layoutX="7.0" layoutY="32.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="4.0" layoutY="547.0">
+         <children>
+            <Label alignment="CENTER" layoutX="109.0" layoutY="11.0" prefHeight="32.0" prefWidth="54.0" rotate="90.0" style="-fx-background-color: orangered; -fx-border-color: #000000;" text="7" textAlignment="CENTER">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land11" alignment="BOTTOM_LEFT" minHeight="54.0" minWidth="152.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="National Museum ">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand11" layoutX="40.0" layoutY="1.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="4.0" layoutY="387.79998779296875">
+         <children>
+            <Label alignment="CENTER" layoutX="109.0" layoutY="11.0" prefHeight="32.0" prefWidth="54.0" rotate="90.0" style="-fx-background-color: orangered; -fx-border-color: #000000;" text="10" textAlignment="CENTER">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land14" alignment="BOTTOM_LEFT" layoutY="0.20001220703125" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Merdeka Sqaure">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand14" layoutX="38.0" layoutY="1.20001220703125" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Label layoutX="130.0" layoutY="350.0" rotate="90.0" style="-fx-background-color: transparent;" text="11">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Group layoutX="4.0" layoutY="282.0">
+         <children>
+            <Label alignment="CENTER" layoutX="110.0" layoutY="11.0" prefHeight="32.0" prefWidth="53.0" rotate="90.0" style="-fx-background-color: lightblue; -fx-border-color: black;" text="12" textAlignment="CENTER">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land16" alignment="BOTTOM_LEFT" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="A Famosa Fort">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand16" layoutX="37.0" layoutY="1.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="4.0" layoutY="176.0">
+         <children>
+            <Label alignment="CENTER" layoutX="110.0" layoutY="11.0" prefHeight="32.0" prefWidth="53.0" rotate="90.0" style="-fx-background-color: lightblue; -fx-border-color: #000000;" text="13" textAlignment="CENTER">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land18" alignment="BOTTOM_LEFT" minHeight="54.0" minWidth="151.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Kellie Castle">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="30.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand18" layoutX="38.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="4.0" layoutY="122.80000305175781">
+         <children>
+            <Label alignment="CENTER" layoutX="109.0" layoutY="11.0" prefHeight="32.0" prefWidth="54.0" rotate="90.0" style="-fx-background-color: lightblue; -fx-border-color: #000000;" text="14" textAlignment="CENTER">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land19" alignment="BOTTOM_LEFT" layoutY="0.1999969482421875" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Stadthuys" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="35.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand19" layoutX="38.0" layoutY="0.1999969482421875" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="155.0" layoutY="2.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutY="90.0" minHeight="32.0" minWidth="56.0" prefHeight="32.0" prefWidth="56.0" style="-fx-background-color: #AA336A; -fx-border-color: #000000;" text="15" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land21" alignment="TOP_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="118.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Fraser's Hill" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand21" layoutX="5.0" layoutY="73.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="265.0" layoutY="2.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutY="90.0" minHeight="32.0" minWidth="56.0" prefHeight="32.0" prefWidth="56.0" style="-fx-background-color: #AA336A; -fx-border-color: #000000;" text="16" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land23" alignment="TOP_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Cameron Highlands" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand23" layoutX="6.0" layoutY="74.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="430.0" layoutY="2.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutY="90.0" minHeight="32.0" minWidth="56.0" prefHeight="32.0" prefWidth="56.0" style="-fx-background-color: orange; -fx-border-color: #000000;" text="19" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land26" alignment="TOP_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Pahang National Park" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand26" layoutX="6.0" layoutY="73.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="320.0" layoutY="2.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutY="90.0" minHeight="32.0" minWidth="56.0" prefHeight="32.0" prefWidth="56.0" style="-fx-background-color: #AA336A; -fx-border-color: #000000;" text="17" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land24" alignment="TOP_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Genting Highlands" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand24" layoutX="6.0" layoutY="74.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="541.0" layoutY="2.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutY="90.0" minHeight="32.0" minWidth="57.0" prefHeight="32.0" prefWidth="57.0" style="-fx-background-color: orange; -fx-border-color: #000000;" text="21" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land28" alignment="TOP_CENTER" minHeight="122.0" minWidth="57.0" prefHeight="121.0" prefWidth="57.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Gunung Mulu National Park" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand28" layoutX="6.0" layoutY="75.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="597.0" layoutY="2.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutY="90.0" minHeight="32.0" minWidth="57.0" prefHeight="32.0" prefWidth="57.0" style="-fx-background-color: orange; -fx-border-color: #000000;" text="22" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land29" alignment="TOP_CENTER" minHeight="122.0" minWidth="57.0" prefHeight="121.0" prefWidth="57.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Kinabalu National Park" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand29" layoutX="6.0" layoutY="75.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="375.0" layoutY="2.0">
+         <children>
+            <Group>
+               <children>
+                  <Label layoutX="16.0" layoutY="95.0" text="18" textAlignment="CENTER">
+                     <font>
+                        <Font name="Bell MT Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Land25" alignment="TOP_CENTER" contentDisplay="CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="KL Sentral Station" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Bell MT Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </Group>
+         </children>
+      </Group>
+      <Group layoutX="485.0" layoutY="2.0">
+         <children>
+            <Label layoutX="16.0" layoutY="95.0" text="20" textAlignment="CENTER">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land27" alignment="TOP_CENTER" minHeight="122.0" minWidth="57.0" prefHeight="122.0" prefWidth="57.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Jabatan Bekelan Air" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="654.0" layoutY="120.79999542236328">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutX="-13.0" layoutY="11.0" prefHeight="32.0" prefWidth="54.0" rotate="270.0" style="-fx-background-color: red; -fx-border-color: #000000;" text="23" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land31" alignment="BOTTOM_RIGHT" layoutX="-1.0" layoutY="0.20000457763671875" minHeight="50.0" minWidth="151.0" prefHeight="53.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Tioman Islands" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="21.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand31" layoutX="67.0" layoutY="1.2000045776367188" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="654.0" layoutY="279.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutX="-12.0" layoutY="12.0" prefHeight="32.0" prefWidth="53.0" rotate="270.0" style="-fx-background-color: red; -fx-border-color: #000000;" text="25" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land34" alignment="BOTTOM_RIGHT" layoutX="-1.0" layoutY="1.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Sepedan Islands">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="15.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand34" layoutX="67.0" layoutY="1.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="654.0" layoutY="441.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutX="-11.0" layoutY="11.0" prefHeight="32.0" prefWidth="53.0" rotate="270.0" style="-fx-background-color: yellow; -fx-border-color: #000000;" text="27" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land37" alignment="BOTTOM_RIGHT" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="KLCC">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="8.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand37" layoutX="61.0" layoutY="1.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Label alignment="BOTTOM_CENTER" layoutX="644.0" layoutY="558.0" prefHeight="32.0" prefWidth="53.0" rotate="270.0" style="-fx-background-color: yellow; -fx-border-color: #000000;" text="28" textAlignment="JUSTIFY">
+         <font>
+            <Font name="Bell MT Bold" size="20.0" />
+         </font>
+      </Label>
+      <Group layoutX="629.0" layoutY="330.0">
+         <children>
+            <Label layoutX="26.0" layoutY="21.0" rotate="270.0" text="26">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land35" alignment="CENTER_RIGHT" layoutX="24.0" layoutY="3.0" minHeight="54.0" minWidth="151.0" prefHeight="57.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Pudu Sentral Station">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="14.0" />
+               </padding>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="266.0" layoutY="600.0">
+         <children>
+            <Label fx:id="Land7" alignment="TOP_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="FATE">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Label>
+            <ImageView fitHeight="35.0" fitWidth="23.0" layoutX="16.0" layoutY="56.0">
+               <image>
+                  <Image url="@../../../fate.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <Group layoutX="431.0" layoutY="600.0">
+         <children>
+            <Label fx:id="Land4" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="TAX 2M">
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </Label>
+            <ImageView fitHeight="52.0" fitWidth="63.0" layoutX="-3.0" layoutY="10.0" rotate="90.0">
+               <image>
+                  <Image url="@../../../tax.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <Label fx:id="Land2" alignment="TOP_CENTER" layoutX="542.0" layoutY="600.0" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="FATE">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="Land22" alignment="BOTTOM_CENTER" layoutX="210.0" layoutY="2.0" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="FATE" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </Label>
+      <Label fx:id="Land17" layoutX="4.0" layoutY="229.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="  FATE" textAlignment="RIGHT" wrapText="true">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+      <Label fx:id="Land15" layoutX="4.0" layoutY="335.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="KLIA2">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+      <Label fx:id="Land12" alignment="BOTTOM_CENTER" layoutX="4.0" layoutY="494.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Tenaga National Berhad">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </Label>
+      <Label fx:id="Land20" alignment="CENTER" layoutX="5.0" layoutY="2.0" minHeight="53.0" minWidth="149.0" prefHeight="122.0" prefWidth="151.0" style="-fx-background-color: transparent; -fx-border-color: black;" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="Land33" alignment="CENTER_RIGHT" layoutX="653.0" layoutY="226.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="  FATE" textAlignment="RIGHT" wrapText="true">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </Label>
+      <Label fx:id="Land36" alignment="CENTER_RIGHT" layoutX="654.0" layoutY="388.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="FATE">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" right="10.0" />
+         </padding>
+      </Label>
+      <Label fx:id="Land39" alignment="BOTTOM_RIGHT" layoutX="654.0" layoutY="547.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Sepang II Circuit">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" right="18.0" />
+         </padding>
+      </Label>
+      <Group layoutX="654.0" layoutY="600.0">
+         <children>
+            <Label fx:id="Land0" alignment="BOTTOM_CENTER" minHeight="53.0" minWidth="151.0" prefHeight="122.0" prefWidth="126.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="GO">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <ImageView fitHeight="80.0" fitWidth="126.0" layoutX="14.0" layoutY="2.0">
+               <image>
+                  <Image url="@../../../go.png" />
+               </image>
+            </ImageView>
+            <Circle fill="DODGERBLUE" layoutX="76.0" layoutY="50.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Label fx:id="Land10" alignment="CENTER" layoutX="5.0" layoutY="600.0" minHeight="53.0" minWidth="151.0" prefHeight="122.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;">
+         <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="Land30" layoutX="653.0" layoutY="2.0" minHeight="120.0" minWidth="153.0" prefHeight="120.0" prefWidth="153.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" />
+      <ImageView fitHeight="323.0" fitWidth="333.0" layoutX="238.0" layoutY="137.0">
+         <image>
+            <Image url="@../../../logo.jpeg" />
+         </image></ImageView>
+      <ImageView fitHeight="117.0" fitWidth="144.0" layoutX="7.0" layoutY="603.0">
+         <image>
+            <Image url="@../../../jail.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="57.0" layoutY="342.0">
+         <image>
+            <Image url="@../../../klia.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="23.0" layoutX="560.0" layoutY="652.0">
+         <image>
+            <Image url="@../../../fate.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="23.0" layoutX="87.0" layoutY="237.0">
+         <image>
+            <Image url="@../../../fate.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="30.0" layoutX="67.0" layoutY="20.0">
+         <image>
+            <Image url="@../../../parking.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="689.0" layoutY="497.0" rotate="90.0">
+         <image>
+            <Image url="@../../../tax.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="23.0" layoutX="691.0" layoutY="396.0">
+         <image>
+            <Image url="@../../../fate.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="23.0" layoutX="227.0" layoutY="41.0">
+         <image>
+            <Image url="@../../../fate.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="23.0" layoutX="691.0" layoutY="235.0">
+         <image>
+            <Image url="@../../../fate.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="117.0" fitWidth="149.0" layoutX="655.0" layoutY="4.0">
+         <image>
+            <Image url="@../../../go_to_jail.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="397.0" layoutY="475.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <Label fx:id="HousesCounterLand39" layoutX="717.0" layoutY="548.0" text="Houses=0" textFill="#00000082">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <HBox layoutX="282.0" layoutY="509.0" />
+      <GridPane hgap="10.0" layoutX="295.0" layoutY="520.0" prefHeight="70.0" prefWidth="164.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <Button layoutX="562.0" layoutY="307.0" mnemonicParsing="false" text="Buy House" />
+      <Button layoutX="562.0" layoutY="257.0" mnemonicParsing="false" text="Sell House" />
+      <Button layoutX="541.0" layoutY="187.0" mnemonicParsing="false" text="Sell Property" />
+      <Button layoutX="544.0" layoutY="148.0" mnemonicParsing="false" text="Forfeit" />
+      <Group layoutX="4.0" layoutY="441.0">
+         <children>
+            <Label alignment="CENTER" layoutX="109.0" layoutY="11.0" prefHeight="32.0" prefWidth="54.0" rotate="90.0" style="-fx-background-color: orangered; -fx-border-color: #000000;" text="9" textAlignment="CENTER">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land111" alignment="BOTTOM_LEFT" minHeight="54.0" minWidth="152.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Royal Palace">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand111" layoutX="40.0" layoutY="1.0" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group layoutX="654.0" layoutY="173.0">
+         <children>
+            <Label alignment="BOTTOM_CENTER" layoutX="-13.0" layoutY="11.0" prefHeight="32.0" prefWidth="54.0" rotate="270.0" style="-fx-background-color: red; -fx-border-color: #000000;" text="24" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="Land311" alignment="BOTTOM_RIGHT" layoutX="-1.0" layoutY="0.20000457763671875" minHeight="50.0" minWidth="151.0" prefHeight="53.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="  Perhentian Islands" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="21.0" />
+               </padding>
+            </Label>
+            <Label fx:id="HousesCounterLand311" layoutX="67.0" layoutY="1.2000045776367188" text="Houses=0" textFill="#00000082">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+          <Label fx:id="Land38" alignment="CENTER_RIGHT" layoutX="654.0" layoutY="494.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="TAX 2M">
+          <font>
+            <Font name="Bell MT Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </Label>
+      <Button fx:id="RollDiceBtn" layoutX="551.0" layoutY="224.0" mnemonicParsing="false" onAction="#onRollDiceBtnClicked" text="Roll Dice" />
+      <Label fx:id="boardOutputLabel" layoutX="170.0" layoutY="458.0" prefHeight="54.0" prefWidth="469.0" text="Output" />
+    </children>
+</AnchorPane>
