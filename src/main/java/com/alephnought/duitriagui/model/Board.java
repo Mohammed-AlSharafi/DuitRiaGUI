@@ -9,7 +9,7 @@ package com.alephnought.duitriagui.model;
  */
 public class Board {
 
-    static Cell[] cells = {
+    public static Cell[] cells = {
             new Cell("Go", 0, 732, 659),
             new Cell("Petaling Street", 600000, 625, 659),
             new Cell("Fate", 0, 569, 659),
@@ -33,7 +33,7 @@ public class Board {
             new Cell("Parking", 0, 76, 60),
             new Cell("Fraser's Hill", 2200000, 183, 60),
             new Cell("Fate", 0, 238, 60),
-            new Cell("Cameron Highlands", 2200000, 348, 60),
+            new Cell("Cameron Highlands", 2200000, 293, 60),
             new Cell("Genting Highlands", 2400000, 348, 60),
             new Cell("KL Sentral Station", 2000000, 403, 60),
             new Cell("Pahang National Park", 2600000, 458, 60),
@@ -52,8 +52,8 @@ public class Board {
             new Cell("Sepang II Circuit", 4000000, 732, 577)
     };
     static Set[] sets = {
-        new Set("Blue", new Cell[]{cells[1], cells[3]}),
-        new Set("Green", new Cell[]{cells[6], cells[8], cells[9]}),
+        new Set("Green", new Cell[]{cells[1], cells[3]}),
+        new Set("Blue", new Cell[]{cells[6], cells[8], cells[9]}),
         new Set("Red", new Cell[]{cells[11], cells[13], cells[14]}),
         new Set("Baby Blue", new Cell[]{cells[16], cells[18], cells[19]}),
         new Set("Purple", new Cell[]{cells[21], cells[23], cells[24]}),

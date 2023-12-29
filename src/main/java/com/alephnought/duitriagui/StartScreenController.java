@@ -126,6 +126,4 @@ public class StartScreenController {
             return null;
         }
     }
-
-
 }

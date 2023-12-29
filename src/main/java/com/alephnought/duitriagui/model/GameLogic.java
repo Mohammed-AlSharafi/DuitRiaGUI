@@ -5,6 +5,7 @@
 package com.alephnought.duitriagui.model;
 
 import com.alephnought.duitriagui.GameboardController;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,10 +26,9 @@ public class GameLogic {
     public static ArrayList<Player> players = new ArrayList<>();
     public static Player currentPlayer;
     public static Cell currentCell;
-    ArrayList<Player> scores = new ArrayList<>();
+    public static ArrayList<Player> scores = new ArrayList<>();
     Fate fate = new Fate(this);
     Action action = new Action(this);
-    Bank bank = new Bank(this);
     public static void setOutputText(String text){
         gameboardController.setBoardOutput(text);
     }
@@ -36,10 +36,24 @@ public class GameLogic {
     public static void setDiceImage(int diceNumber, int diceValue){
         gameboardController.setDiceImage(diceNumber, diceValue);
     }
+
+    public static void setPlayerNameLbl(String name){
+        gameboardController.setPlayerNameLbl(name);
+    }
+    public static void setPlayerBalanceLbl(int balance){
+        gameboardController.setPlayerBalanceLbl(Integer.toString(balance));
+    }
+    public static void setPlayerColorCircle(Color color){
+        gameboardController.setPlayerColorCircle(color);
+    }
+
     public void sortPlayers(){
         sortPlayers(players);
     }
     public void nextTurn() {
+        if(numberOfPlayersInGame(players) <= 1){
+            getScoreBoard();
+        }
         if (currentPlayer == null) {
             // If currentPlayer is not set, start with the first player
             currentPlayer = players.get(0);
@@ -48,7 +62,7 @@ public class GameLogic {
             int currentIndex = players.indexOf(currentPlayer);
 
             // Move to the next player, or start a new round if at the end
-            currentPlayer = players.get((currentIndex + 1) % players.size());
+            currentPlayer = findNextPlayerWithInGame((currentIndex + 1) % players.size());
 
             // Check if a new round is starting
             if (currentIndex == players.size() - 1) {
@@ -56,6 +70,21 @@ public class GameLogic {
                 System.out.println("Starting a new round!");
             }
         }
+        setPlayerNameLbl(currentPlayer.getName());
+        setPlayerBalanceLbl(currentPlayer.getBalance());
+        setPlayerColorCircle(currentPlayer.getCircleColor());
+    }
+
+    private Player findNextPlayerWithInGame(int startIndex) {
+        int index = startIndex;
+        while (index != startIndex - 1) {
+            Player nextPlayer = players.get(index);
+            if (nextPlayer.getInGame()) {
+                return nextPlayer;
+            }
+            index = (index + 1) % players.size();
+        }
+        return null; // If no player with getInGame() == true is found, return null
     }
 
     public void getAction(Player player) {
@@ -83,8 +112,9 @@ public class GameLogic {
 
     public static void initializePlayers(String[] playerNames) {
         //initializing a Player object for each player.
-        for (String playerName : playerNames) {
-            Player player = new Player(playerName);
+        for (int i = 0; i < playerNames.length; i++) {
+            String playerName = playerNames[i];
+            Player player = new Player(playerName, Constants.COLORS[i]);
             players.add(player);
         }
     }
@@ -106,7 +136,7 @@ public class GameLogic {
         return players;
     }
 
-    public int numberOfPlayersInGame(List<Player> players) {
+    public static int numberOfPlayersInGame(List<Player> players) {
         int counter = 0;
         for (Player player : players) {
             if (player.getInGame()) {
@@ -120,7 +150,7 @@ public class GameLogic {
         return Board.cells[position - 1];
     }
 
-    public Cell[] getOwnedProperties(Player player) {
+    public static Cell[] getOwnedProperties(Player player) {
 
         List<Cell> ownedProperties = new ArrayList<>();
 
@@ -132,7 +162,7 @@ public class GameLogic {
         return ownedProperties.toArray(new Cell[0]);
     }
 
-    public Set[] getOwnedSets(Player player) {
+    public static Set[] getOwnedSets(Player player) {
         List<Set> ownedSets = new ArrayList<>();
         List<Cell> ownedProperties = Arrays.asList(getOwnedProperties(player));
         for (Set set : Board.sets) {
@@ -143,7 +173,7 @@ public class GameLogic {
         return ownedSets.toArray(new Set[0]);
     }
 
-    public Cell[] getOwnedEnhancedProperties(Player player) {
+    public static Cell[] getOwnedEnhancedProperties(Player player) {
         Cell[] OwnedProperties = getOwnedProperties(player);
 
         List<Cell> ownedEnchancedProperties = new ArrayList<>();
@@ -157,10 +187,9 @@ public class GameLogic {
         return ownedEnchancedProperties.toArray(new Cell[0]);
     }
 
-    public Set getSet(Cell cell) {
+    public static Set getSet(Cell cell) {
         Set[] sets = Board.sets;
-        List<Set> setsList = Arrays.asList(sets);
-        for (Set set : setsList) {
+        for (Set set : sets) {
             if (Arrays.asList(set.getCells()).contains(cell)) {
                 return set;
             }

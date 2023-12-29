@@ -5,23 +5,26 @@
 package com.alephnought.duitriagui;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import com.alephnought.duitriagui.model.Cell;
+import com.alephnought.duitriagui.model.Bank;
 import com.alephnought.duitriagui.model.GameLogic;
 import com.alephnought.duitriagui.model.Player;
+import com.alephnought.duitriagui.model.Set;
+import com.alephnought.duitriagui.model.Cell;
+import com.alephnought.duitriagui.model.Board;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextFlow;
 
 /**
  * FXML Controller class
@@ -42,40 +45,6 @@ public class GameboardController implements Initializable {
     private Label NamePlayer3;
     @FXML
     private Label NamePlayer4;
-    @FXML
-    private Label Balance;
-    @FXML
-    private Label BalancePlayer1;
-    @FXML
-    private Label BalancePlayer2;
-    @FXML
-    private Label BalancePlayer3;
-    @FXML
-    private Label BalancePlayer4;
-    @FXML
-    private Button rollButtonPlayer1;
-    @FXML
-    private Button rollButtonPlayer2;
-    @FXML
-    private Button rollButtonPlayer3;
-    @FXML
-    private Button rollButtonPlayer4;
-    @FXML
-    private Label p1d1;
-    @FXML
-    private Label p1d2;
-    @FXML
-    private Label p2d1;
-    @FXML
-    private Label p3d1;
-    @FXML
-    private Label p4d1;
-    @FXML
-    private Label p2d2;
-    @FXML
-    private Label p3d2;
-    @FXML
-    private Label p4d2;
     @FXML
     private Pane Level1;
     @FXML
@@ -405,13 +374,54 @@ public class GameboardController implements Initializable {
     @FXML
     private Label HousesCounterLand39;
     @FXML
+    private Circle playerColorCircle;
+    @FXML
+    private Label playerNameLbl;
+    @FXML
+    private Label playerBalanceLbl;
+    @FXML
     private Label boardOutputLabel;
     @FXML
     private Button RollDiceBtn;
+    @FXML
+    private ListView chooseSetList;
+    @FXML
+    private ListView choosePropertyList;
+
     private GameLogic gameLogic;
 
     public static int userInput;
 
+
+    public void setChooseSetList(Set[] sets) {
+        String[] setNames = new String[sets.length];
+        for(int i = 0; i < sets.length; i++) {
+            setNames[i] = sets[i].getName();
+        }
+        chooseSetList.getItems().clear();
+        chooseSetList.getItems().addAll(setNames);
+    }
+
+    public void setChoosePropertyList(Cell[] cells) {
+        String[] cellNames = new String[cells.length];
+        for(int i = 0; i < cells.length; i++) {
+            cellNames[i] = cells[i].getName();
+        }
+        choosePropertyList.getItems().clear();
+        choosePropertyList.getItems().addAll(cellNames);
+    }
+
+    public void setPlayerNameLbl(String text) {
+        playerNameLbl.setText(text);
+    }
+
+    public void setPlayerBalanceLbl(String text) {
+        playerBalanceLbl.setText(text);
+    }
+
+    public void setPlayerColorCircle(Color color){
+        playerColorCircle.setFill(color);
+    }
     public void setDiceImage(int diceNumber, int diceValue) {
         String imagePath = String.format("/dice%d.png", diceValue);
         URL imageURL = getClass().getResource(imagePath);
@@ -425,13 +435,13 @@ public class GameboardController implements Initializable {
             }
         } else {
             // Handle the case where the image cannot be loaded
-            System.out.println("Resource directory: " + getClass().getResource("/"));
+//            System.out.println("Resource directory: " + getClass().getResource("/"));
             System.out.println("Failed to load image: " + imagePath);
         }
     }
 
     //show a dialog with yes or no buttons, returns true or false depending on button pressed.
-    public static boolean choiceDialog(String choice) {
+    public static boolean showChoiceDialog(String choice) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Choice Dialog");
         alert.setHeaderText(choice);
@@ -456,6 +466,16 @@ public class GameboardController implements Initializable {
             // Add your code for "No" option or do nothing
         }
     }
+
+    public static void showErrorDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    //set the text of the board output label
     public void setBoardOutput(String text){
         boardOutputLabel.setText(text);
         boardOutputLabel.setTextAlignment(TextAlignment.CENTER);
@@ -470,22 +490,78 @@ public class GameboardController implements Initializable {
         gameLogic.nextTurn();
     }
 
-    public void updateBoardPosition(Player player){
-        Cell currentCell = GameLogic.getCellByPosition(player.getPosition());
-        System.out.println(currentCell.getName());
-        int[] position = currentCell.getPosition();
-        player.setBoardPosition(position[0], position[1]);
+    //show a dialog with a list of items, returns the selected item
+    public static <T> T showListDialog(T[] itemList) {
+        Dialog<T> dialog = new Dialog<>();
+        dialog.setTitle("List Dialog");
+        dialog.setHeaderText("Select an item:");
+
+        // Set the button types
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        // Create a ListView to display the list of items
+        ListView<T> listView = new ListView<>();
+        listView.getItems().addAll(itemList);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        // Set the content of the dialog
+        VBox vbox = new VBox();
+        vbox.getChildren().add(listView);
+        dialog.getDialogPane().setContent(vbox);
+
+        // Convert the result to the selected item when the OK button is clicked
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == ButtonType.OK) {
+                return listView.getSelectionModel().getSelectedItem();
+            }
+            return null;
+        });
+
+        // Show the dialog and wait for the user's response
+        return dialog.showAndWait().orElse(null);
     }
 
+
+    public void onBuyHouseBtnClicked(){
+        Bank.buyHouse(GameLogic.currentPlayer);
+    }
+    public void onSellPropertyBtnClicked(){
+        Bank.sellProperty(GameLogic.currentPlayer);
+    }
+    public void onSellHouseBtnClicked(){
+        Bank.sellHouse(GameLogic.currentPlayer);
+    }
+
+    public void onForfeitBtnClicked(){
+        System.out.println("Player forfeited");
+        GameLogic.currentPlayer.forfeit();
+        gameLogic.nextTurn();
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         gameLogic = new GameLogic(this);
         gameLogic.sortPlayers();
         gameLogic.nextTurn();
+        int[] specialCells = {0, 2, 4, 7, 10, 12, 19, 22, 24, 32, 35, 37, 40}; //fix
+        for(int i = 0; i < Board.cells.length; i++){
+            if(!contains(specialCells, i)){
+                System.out.println(Board.cells[i].getName());
+                Board.cells[i].createOwnerColoredCircle();
+                gameBoardPane.getChildren().add(Board.cells[i].getOwnerColoredCircle());
+            }
+        }
         for (Player player : GameLogic.players){
             player.createCircle();
             gameBoardPane.getChildren().add(player.getCircle());
             player.updateBoardPosition();
         }
+    }
+    public boolean contains (int[] array, int value){
+        for(int i = 0; i < array.length; i++){
+            if(array[i] == value){
+                return true;
+            }
+        }
+        return false;
     }
 }

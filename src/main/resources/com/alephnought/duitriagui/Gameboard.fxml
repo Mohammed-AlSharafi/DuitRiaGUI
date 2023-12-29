@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="gameBoardPane" prefHeight="725.0" prefWidth="807.0" style="-fx-background-color: #CDEACE;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alephnought.duitriagui.GameboardController">
+<AnchorPane id="AnchorPane" fx:id="gameBoardPane" prefHeight="726.0" prefWidth="1055.0" style="-fx-background-color: #CDEACE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alephnought.duitriagui.GameboardController">
     <children>
       <Group layoutX="597.0" layoutY="600.0">
          <children>
@@ -17,7 +24,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land1" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="58.0" prefHeight="122.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Petaling Street   RM 600k " textAlignment="CENTER" wrapText="true">
+            <Label fx:id="Land1" alignment="BOTTOM_CENTER" minHeight="105.0" minWidth="58.0" prefHeight="122.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: black;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Bell MT Bold" size="12.0" />
                </font>
@@ -25,9 +32,14 @@
                   <Insets bottom="20.0" />
                </padding>
             </Label>
-            <Label fx:id="HousesCounterLand1" layoutX="7.0" layoutY="33.0" text="Houses=0" textFill="#00000082">
+            <Label fx:id="HousesLand2" layoutX="7.0" layoutY="33.0" text="Houses=0" textFill="#00000082">
                <font>
                   <Font size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="5.0" layoutY="59.0" prefHeight="70.0" prefWidth="50.0" text="Petaling Street   RM 600k " textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="12.0" />
                </font>
             </Label>
          </children>
@@ -39,7 +51,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land3" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="57.0" prefHeight="122.0" prefWidth="57.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Jonker Street   RM600k" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="Land3" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="57.0" prefHeight="122.0" prefWidth="57.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Bell MT Bold" size="12.0" />
                </font>
@@ -47,9 +59,14 @@
                   <Insets bottom="20.0" />
                </padding>
             </Label>
-            <Label fx:id="HousesCounterLand3" layoutX="6.0" layoutY="32.0" text="Houses=0" textFill="#00000082">
+            <Label fx:id="HousesLand4" layoutX="6.0" layoutY="32.0" text="Houses=0" textFill="#00000082">
                <font>
                   <Font size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="5.0" layoutY="60.0" prefHeight="70.0" prefWidth="50.0" text="Jonker Street  RM 600k " textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="12.0" />
                </font>
             </Label>
          </children>
@@ -61,16 +78,21 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land5" alignment="CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="KLIA" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="Land5" alignment="CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Bell MT Bold" size="12.0" />
                </font>
             </Label>
-            <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="13.0" layoutY="79.0">
+            <ImageView fitHeight="29.0" fitWidth="30.0" layoutX="13.0" layoutY="67.0">
                <image>
                   <Image url="@../../../klia.png" />
                </image>
             </ImageView>
+            <Label layoutX="14.0" layoutY="90.0" prefHeight="35.0" prefWidth="33.0" text="KLIA" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Group>
       <Group layoutX="321.0" layoutY="600.0">
@@ -80,7 +102,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land6" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Masjid Jamek" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="Land6" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Times New Roman" size="12.0" />
                </font>
@@ -88,9 +110,14 @@
                   <Insets bottom="20.0" />
                </padding>
             </Label>
-            <Label fx:id="HousesCounterLand6" layoutX="5.0" layoutY="33.0" text="Houses=0" textFill="#00000082">
+            <Label fx:id="HousesLand7" layoutX="5.0" layoutY="33.0" text="Houses=0" textFill="#00000082">
                <font>
                   <Font size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="4.0" layoutY="59.0" prefHeight="70.0" prefWidth="50.0" text="Masjid Jamek RM 1M" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="12.0" />
                </font>
             </Label>
          </children>
@@ -102,7 +129,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land8" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Batu Caves" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="Land8" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Bell MT Bold" size="12.0" />
                </font>
@@ -110,9 +137,14 @@
                   <Insets bottom="20.0" />
                </padding>
             </Label>
-            <Label fx:id="HousesCounterLand8" layoutX="5.0" layoutY="32.0" text="Houses=0" textFill="#00000082">
+            <Label fx:id="HousesLand9" layoutX="5.0" layoutY="32.0" text="Houses=0" textFill="#00000082">
                <font>
                   <Font size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="3.0" layoutY="60.0" prefHeight="70.0" prefWidth="50.0" text="Batu Caves RM 1M" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="12.0" />
                </font>
             </Label>
          </children>
@@ -124,7 +156,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land9" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" text="Sri Maha Mariamman Temple" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="Land9" alignment="BOTTOM_CENTER" minHeight="122.0" minWidth="56.0" prefHeight="122.0" prefWidth="56.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Times New Roman" size="11.0" />
                </font>
@@ -132,9 +164,14 @@
                   <Insets bottom="10.0" />
                </padding>
             </Label>
-            <Label fx:id="HousesCounterLand9" layoutX="7.0" layoutY="32.0" text="Houses=0" textFill="#00000082">
+            <Label fx:id="HousesLand10" layoutX="7.0" layoutY="32.0" text="Houses=0" textFill="#00000082">
                <font>
                   <Font size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="3.0" layoutY="55.0" prefHeight="73.0" prefWidth="52.0" text="Sri Maha Mariamman Temple RM 1.2M" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="10.0" />
                </font>
             </Label>
          </children>
@@ -502,7 +539,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land35" alignment="CENTER_RIGHT" layoutX="24.0" layoutY="3.0" minHeight="54.0" minWidth="151.0" prefHeight="57.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Pudu Sentral Station">
+            <Label fx:id="Land35" alignment="CENTER_RIGHT" layoutX="24.0" layoutY="3.0" minHeight="54.0" minWidth="151.0" prefHeight="57.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Pudu Sentral Station" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Bell MT Bold" size="12.0" />
                </font>
@@ -522,7 +559,7 @@
                   <Insets top="20.0" />
                </padding>
             </Label>
-            <ImageView fitHeight="35.0" fitWidth="23.0" layoutX="16.0" layoutY="56.0">
+            <ImageView fitHeight="35.0" fitWidth="23.0" layoutX="16.0" layoutY="70.0">
                <image>
                   <Image url="@../../../fate.png" />
                </image>
@@ -627,7 +664,6 @@
                   <Image url="@../../../go.png" />
                </image>
             </ImageView>
-            <Circle fill="DODGERBLUE" layoutX="76.0" layoutY="50.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
       <Label fx:id="Land10" alignment="CENTER" layoutX="5.0" layoutY="600.0" minHeight="53.0" minWidth="151.0" prefHeight="122.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;">
@@ -636,7 +672,7 @@
          </font>
       </Label>
       <Label fx:id="Land30" layoutX="653.0" layoutY="2.0" minHeight="120.0" minWidth="153.0" prefHeight="120.0" prefWidth="153.0" style="-fx-background-color: transparent; -fx-border-color: #000000;" />
-      <ImageView fitHeight="323.0" fitWidth="333.0" layoutX="238.0" layoutY="137.0">
+      <ImageView fitHeight="222.0" fitWidth="229.0" layoutX="293.0" layoutY="222.0">
          <image>
             <Image url="@../../../logo.jpeg" />
          </image></ImageView>
@@ -650,7 +686,7 @@
             <Image url="@../../../klia.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="23.0" layoutX="560.0" layoutY="652.0">
+      <ImageView fitHeight="35.0" fitWidth="23.0" layoutX="560.0" layoutY="669.0">
          <image>
             <Image url="@../../../fate.png" />
          </image>
@@ -705,7 +741,7 @@
          </font>
       </Label>
       <HBox layoutX="282.0" layoutY="509.0" />
-      <GridPane hgap="10.0" layoutX="295.0" layoutY="520.0" prefHeight="70.0" prefWidth="164.0">
+      <GridPane hgap="10.0" layoutX="346.0" layoutY="165.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -714,14 +750,14 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+            <ImageView fx:id="diceImage1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="diceImage2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="562.0" layoutY="307.0" mnemonicParsing="false" text="Buy House" />
-      <Button layoutX="562.0" layoutY="257.0" mnemonicParsing="false" text="Sell House" />
-      <Button layoutX="541.0" layoutY="187.0" mnemonicParsing="false" text="Sell Property" />
-      <Button layoutX="544.0" layoutY="148.0" mnemonicParsing="false" text="Forfeit" />
+      <Button fx:id="buyHouseBtn" layoutX="821.0" layoutY="631.0" mnemonicParsing="false" onAction="#onBuyHouseBtnClicked" text="Buy House" />
+      <Button fx:id="sellHouseBtn" layoutX="992.0" layoutY="631.0" mnemonicParsing="false" onAction="#onSellHouseBtnClicked" text="Sell House" />
+      <Button fx:id="sellPropertyBtn" layoutX="902.0" layoutY="631.0" mnemonicParsing="false" onAction="#onSellPropertyBtnClicked" text="Sell Property" />
+      <Button layoutX="823.0" layoutY="686.0" mnemonicParsing="false" onAction="#onForfeitBtnClicked" prefHeight="26.0" prefWidth="63.0" text="Forfeit" />
       <Group layoutX="4.0" layoutY="441.0">
          <children>
             <Label alignment="CENTER" layoutX="109.0" layoutY="11.0" prefHeight="32.0" prefWidth="54.0" rotate="90.0" style="-fx-background-color: orangered; -fx-border-color: #000000;" text="9" textAlignment="CENTER">
@@ -774,7 +810,24 @@
             <Insets right="10.0" />
          </padding>
       </Label>
-      <Button fx:id="RollDiceBtn" layoutX="551.0" layoutY="224.0" mnemonicParsing="false" onAction="#onRollDiceBtnClicked" text="Roll Dice" />
-      <Label fx:id="boardOutputLabel" layoutX="170.0" layoutY="458.0" prefHeight="54.0" prefWidth="469.0" text="Output" />
+      <Button fx:id="RollDiceBtn" layoutX="346.0" layoutY="532.0" mnemonicParsing="false" onAction="#onRollDiceBtnClicked" prefHeight="47.0" prefWidth="111.0" text="Roll Dice" />
+      <Label fx:id="boardOutputLabel" layoutX="170.0" layoutY="458.0" prefHeight="54.0" prefWidth="471.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="playerNameLbl" layoutX="823.0" layoutY="106.0" prefHeight="35.0" prefWidth="249.0" text="Name.Label" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="playerBalanceLbl" layoutX="822.0" layoutY="155.0" prefHeight="35.0" prefWidth="250.0" text="Player.Balance.Label" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Circle fx:id="playerColorCircle" fill="DODGERBLUE" layoutX="948.0" layoutY="60.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line endX="7.39996337890625" endY="721.0" layoutX="803.0" layoutY="4.0" startX="7.39996337890625" startY="-6.400002956390381" />
+      <Line endX="232.4000244140625" endY="-7.300008296966553" layoutX="840.0" layoutY="11.0" startX="-29.60003662109375" startY="-7.30000638961792" />
+      <Line endX="95.9000244140625" endY="-40.90000534057617" layoutX="976.0" layoutY="16.0" startX="95.9000244140625" startY="710.0" />
+      <Line endX="160.4000244140625" layoutX="911.0" layoutY="723.0" startX="-100.0" />
+      <Button fx:id="onEndGameBtnClicked" layoutX="990.0" layoutY="686.0" mnemonicParsing="false" text="End Game" />
     </children>
 </AnchorPane>

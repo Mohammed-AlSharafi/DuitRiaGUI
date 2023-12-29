@@ -22,7 +22,7 @@ public class Set {
         this.cells = set;
     }
 
-    public void setBuildEvenly(boolean buildEvenly) {
+    public void setBuildEvenly(Boolean buildEvenly) {
         this.buildEvenly = buildEvenly;
     }
 
@@ -48,5 +48,9 @@ public class Set {
             houseNumber += cell.getHouseNumber();
         }
         return houseNumber;
+    }
+    @Override       //override toString method to print the name of the set in GUI list
+    public String toString() {
+        return name;
     }
 }

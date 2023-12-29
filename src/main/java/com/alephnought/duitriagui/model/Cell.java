@@ -4,6 +4,10 @@
  */
 package com.alephnought.duitriagui.model;
 
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +22,8 @@ public class Cell {
     private int[] position = new int[2];
     private Player owner;
     private int houseNumber = 0;
+
+    private Circle ownerColoredCircle;
 
     public Cell(String name, int price, int positionX, int positionY) {
         this.name = name;
@@ -46,8 +52,22 @@ public class Cell {
 
     public void setOwner(Player player) {
         owner = player;
+        if(player!=null){
+            ownerColoredCircle.setFill(player.getCircleColor());
+        }else{
+            ownerColoredCircle.setFill(Color.BLACK);
+        }
+    }
+    public void createOwnerColoredCircle() {
+        ownerColoredCircle = new Circle();
+        ownerColoredCircle.setRadius(3);
+        ownerColoredCircle.setCenterX(position[0]);
+        ownerColoredCircle.setCenterY(position[1]-5);
     }
 
+    public Circle getOwnerColoredCircle() {
+        return ownerColoredCircle;
+    }
     public Player getOwner() {
         return owner;
     }
@@ -77,8 +97,12 @@ public class Cell {
         }
         return false;
     }
-
     public int[] getPosition(){
         return position;
+    }
+
+    @Override       //override toString method to print the name of the cell in GUI list
+    public String toString() {
+        return name;
     }
 }

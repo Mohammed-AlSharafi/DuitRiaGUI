@@ -39,11 +39,11 @@ public class Action {
             //case player is on Tax
             case 5:
             case 39: {
-                if (gameLogic.bank.canPay(player.getBalance(), Constants.TAX, true)) {
+                if (Bank.canPay(player.getBalance(), Constants.TAX, true)) {
                     GameLogic.setOutputText(player.getName()+" paid "+Constants.TAX + " for tax");
                     player.deductBalance(Constants.TAX);
                 } else {
-                    gameLogic.bank.bankruptPlayer(player, GameLogic.currentCell);
+                    Bank.bankruptPlayer(player, GameLogic.currentCell);
                 }
                 break;
             }
@@ -57,12 +57,12 @@ public class Action {
                         GameLogic.setOutputText(player.getName() + " rolled a double " + rolledNumber[0] + " so player got out of jail!");
                         player.bailFromJail();
                     } else {
-                        if (gameLogic.bank.canPay(player.getBalance(), Constants.BAIL, true)) {
+                        if (Bank.canPay(player.getBalance(), Constants.BAIL, true)) {
                             player.deductBalance(Constants.BAIL);
                             GameLogic.setOutputText(player.getName() + " failed to roll a double. Player fined "+ Constants.BAIL + " as bail.");
                             player.bailFromJail();
                         } else {
-                            gameLogic.bank.bankruptPlayer(player, GameLogic.currentCell);
+                            Bank.bankruptPlayer(player, GameLogic.currentCell);
                         }
                     }
                     gameLogic.rollAndGetAction(player);
@@ -73,7 +73,7 @@ public class Action {
             //case player is on Parking
             case 21: {
                 if (!player.getCanMove()) {
-                        boolean isPlayerMove = GameboardController.choiceDialog("Do you want to move?");
+                        boolean isPlayerMove = GameboardController.showChoiceDialog("Do you want to move?");
                         if (isPlayerMove) {
                             gameLogic.rollAndGetAction(player);
                             player.setCanMove(true);
@@ -101,10 +101,10 @@ public class Action {
                         break;
                     }
                     //check if player has enough money
-                    if (gameLogic.bank.canPay(player.getBalance(), price)) {
-                            boolean isPlayerBuyProperty = GameboardController.choiceDialog("Do you want to buy this property?");
+                    if (Bank.canPay(player.getBalance(), price)) {
+                            boolean isPlayerBuyProperty = GameboardController.showChoiceDialog("Do you want to buy this property?");
                             if (isPlayerBuyProperty){
-                                gameLogic.bank.buyProperty(player, GameLogic.currentCell);
+                                Bank.buyProperty(player, GameLogic.currentCell);
                                 GameLogic.setOutputText(player.getName() + " bought " + GameLogic.currentCell.getName() + " for RM"+ GameLogic.currentCell.getPrice() + "!");
                             }
                     }
@@ -112,7 +112,7 @@ public class Action {
 
                 //if it is owned by a player which is not the current player.
                 else if (GameLogic.currentCell.getOwner() != player) {
-                    gameLogic.bank.payRent(player, GameLogic.currentCell);
+                    Bank.payRent(player, GameLogic.currentCell);
                 }
 
                 break;

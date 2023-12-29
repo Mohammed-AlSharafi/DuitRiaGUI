@@ -4,6 +4,8 @@
  */
 package com.alephnought.duitriagui.model;
 
+import com.alephnought.duitriagui.GameboardController;
+
 import java.util.Scanner;
 
 /**
@@ -12,210 +14,152 @@ import java.util.Scanner;
  */
 public class Bank {
 
-    private final GameLogic gameLogic;
-
-    //constructor to get GameLogic methods here and store it in the variable gameLogic
-    public Bank(GameLogic gameLogic) {
-        this.gameLogic = gameLogic;
+    // check if player can pay for an item with balance given.
+    public static boolean canPay(int balance, int item) {
+        return balance >= item;
     }
 
-    Scanner input = new Scanner(System.in);
-    int choice;
-
-    public boolean canPay(int balance, int item) {
-        return balance >= item ? true : false;
-    }
-
-    public boolean canPay(int balance, int item, boolean loan) {
+    //overloaded method to check if player can pay for an item with loan given.
+    public static boolean canPay(int balance, int item, boolean loan) {
         if (loan) {
-            return balance + Constants.LOAN >= item ? true : false;
+            return balance + Constants.LOAN >= item;
         } 
         //check later
         else {
-            return balance  >= item ? true : false;
+            return balance >= item;
         }
     }
 
-    public void buyProperty(Player player, Cell cell) {
+    public static void buyProperty(Player player, Cell cell) {
         cell.setOwner(player);
         player.deductBalance(cell.getPrice());
     }
 
-    public void sellProperty(Player player) {
-        Cell[] ownedProperties = gameLogic.getOwnedProperties(player);
-        Set[] ownedSets = gameLogic.getOwnedSets(player);
+    public static void sellProperty(Player player) {
+        Cell[] ownedProperties = GameLogic.getOwnedProperties(player);
+        Set[] ownedSets = GameLogic.getOwnedSets(player);
         Cell chosenCell;
 
         //check if player has any property
-        if (ownedProperties == null || ownedProperties.length <= 0) {
-            System.out.println("You don't have any property to sell!");
+        if (ownedProperties.length <= 0) {
+            GameboardController.showErrorDialog("You don't have any property to sell!");
             return;
         }
 
-        //list owned properties
-        for (int i = 0; i < ownedProperties.length; i++) {
-            System.out.println((i + 1) + ". " + ownedProperties[i].getName());
-        }
-
-        //prompt to choose property to sell
-        do {
-            System.out.println("Choose a Property from the above list, [-1] to cancel");
-            choice = input.nextInt();
-        } while ((choice <= 0 || choice > ownedProperties.length) && choice != -1);
-        if (choice == -1) {
-            return;
-        }
-        chosenCell = ownedProperties[choice - 1];
+        //prompt user to choose a property.
+        chosenCell = GameboardController.showListDialog(ownedProperties);
 
         //if property belongs to owned sets
         if (chosenCell.belongsTo(ownedSets)) {
-            Set set = gameLogic.getSet(chosenCell);
+            Set set = GameLogic.getSet(chosenCell);
             if (set.getHouseNumber() > 0) {
-                System.out.println("You can not sell houses from a property of an enchanced set");
+                GameboardController.showErrorDialog("You can not sell a property from an enhanced set");
                 return;
             }
 
         }
-
         chosenCell.setOwner(null);
         player.addBalance(chosenCell.getPrice() / 2);
     }
 
-    public void buyHouse(Player player) {
-        Set[] ownedSets = gameLogic.getOwnedSets(player);
+    public static void buyHouse(Player player) {
+        Set[] ownedSets = GameLogic.getOwnedSets(player);
         Set chosenSet;
-        Cell[] chosenSetCells;
+        Cell[] chosenSetCells = null;
         Cell chosenCell;
         boolean allHousesAreFour;
 
         if (player.getLapNumber() < 3) {
-            System.out.println("you can only purchase houses on the third round and above.");
+            GameboardController.showErrorDialog("you can only purchase houses on the third round and above.");
             return;
         }
         if (!canPay(player.getBalance(), Constants.HOUSE_PRICE)) {
-            System.out.println("you can not afford a house.");
+            GameboardController.showErrorDialog("you can not afford a house.");
             return;
         }
-        if (ownedSets == null || ownedSets.length <= 0) {
-            System.out.println("you do not own any sets");
+        if (ownedSets.length == 0) {
+            GameboardController.showErrorDialog("you do not own any sets");
             return;
         }
 
-        //display list of owned sets.
-        for (int i = 0; i < ownedSets.length; i++) {
-            System.out.println((i + 1) + ". " + ownedSets[i].getName());
-        }
+        chosenSet = GameboardController.showListDialog(ownedSets);
 
-        //prompt user to chose a set.
-        do {
-            System.out.println("Choose a set from the above list, [-1] to cancel");
-            choice = input.nextInt();
-        } while ((choice <= 0 || choice > ownedSets.length) && choice != -1);
-        if (choice == -1) {
+        //Make sure chosenSet is not null
+        if(chosenSet == null){
             return;
         }
-        chosenSet = ownedSets[choice - 1];
+
         chosenSetCells = chosenSet.getCells();
 
         //check if all houses in set have 4 houses.
         allHousesAreFour = true;
         for (Cell cell : chosenSetCells) {
-            allHousesAreFour = cell.getHouseNumber() == 4 ? true : false;
+            allHousesAreFour = cell.getHouseNumber() == 4;
         }
 
         if (allHousesAreFour) {
             //if no more houses can be placed on set.
-            System.out.println("You can not build any more houses on this set.");
+            GameboardController.showErrorDialog("You can not build any more houses on this set.");
             return;
         }
         //check if player has already been given the choice to build evenly or not.
         if (chosenSet.getBuildEvenly() == null) {
-            do {
-                System.out.println("do you want to build evenly? \n 1. Yes \n 2. No");
-                choice = input.nextInt();
-
-                if (choice == 1) {
-                    chosenSet.setBuildEvenly(true);
-                    break;
-                } else if (choice == 2) {
-                    chosenSet.setBuildEvenly(false);
-                    break;
+                //using Boolean wrapper class to allow null value.
+                Boolean buildEvenly = GameboardController.showChoiceDialog("do you want to build evenly?");
+                chosenSet.setBuildEvenly(buildEvenly);
+                if (buildEvenly == null) {
+                    return;
                 }
-            } while (true);
-
         }
-        //if player wants to build evenly
-        if (chosenSet.getBuildEvenly() == true) {
+//        if player wants to build evenly
+        if (chosenSet.getBuildEvenly()) {
             chosenSet.sortCells();
-            if (chosenSetCells.length > 0) {
-                chosenSetCells[0].addHouse();
-                player.deductBalance(Constants.HOUSE_PRICE);
-                return;
-            } else {
-                System.out.println("Error: the set does not have any cells.");
-                return;
-            }
-        } //if player does not want to build evenly.
-        else if (chosenSet.getBuildEvenly() == false) {
+            chosenSetCells[0].addHouse();
+            player.deductBalance(Constants.HOUSE_PRICE);
+        }
+//        if player does not want to build evenly.
+        else if (!chosenSet.getBuildEvenly()) {
 
-            if (chosenSetCells == null || chosenSetCells.length <= 0) {
-                System.out.println("no properties found in cell");
-                return;
-            }
-            //display list of set cells.
-            for (int i = 0; i < chosenSetCells.length; i++) {
-                System.out.println((i + 1) + ". " + chosenSetCells[i].getName());
-            }
-            //prompt user to chose a cell.
-            do {
-                System.out.println("Choose a Property from the above list, [-1] to cancel");
-                choice = input.nextInt();
-            } while ((choice <= 0 || choice > chosenSetCells.length) && choice != -1);
-            if (choice == -1) {
-                return;
-            }
-            chosenCell = chosenSetCells[choice - 1];
+//            prompt user to choose a cell.
+                chosenCell = GameboardController.showListDialog(chosenSetCells);
+                if(chosenCell == null){
+                    return;
+                }
+
             if (chosenCell.getHouseNumber() < 4) {
                 chosenCell.addHouse();
                 player.deductBalance(Constants.HOUSE_PRICE);
-                return;
             } else {
-                System.out.println("you can not build any more houses on this property");
-                return;
+                GameboardController.showErrorDialog("you can not build any more houses on this property");
             }
         }
     }
 
-    public void sellHouse(Player player, Cell cell) {
-        Cell[] ownedEnchancedProperties = gameLogic.getOwnedEnhancedProperties(player);
+    public static void sellHouse(Player player) {
+        Cell[] ownedEnhancedProperties = GameLogic.getOwnedEnhancedProperties(player);
         Cell chosenCell;
-        if (ownedEnchancedProperties == null || ownedEnchancedProperties.length <= 0) {
-            System.out.println("you do not have houses to sell");
+
+        if (ownedEnhancedProperties.length == 0) {
+            GameboardController.showErrorDialog("you do not have houses to sell");
             return;
         }
-        //display list of owned enchanced properties.
-        for (int i = 0; i < ownedEnchancedProperties.length; i++) {
-            System.out.println((i + 1) + ". " + ownedEnchancedProperties[i].getName());
+//        prompt user to choose a property.
+        chosenCell = GameboardController.showListDialog(ownedEnhancedProperties);
+
+//        make sure chosenCell is not null
+        if(chosenCell == null){
+            return;
         }
 
-        //prompt user to chose a property.
-        do {
-            System.out.println("Choose a property from the above list, [-1] to cancel");
-            choice = input.nextInt();
-        } while ((choice <= 0 && choice > ownedEnchancedProperties.length) && choice != -1);
-        if (choice == -1) {
-            return;
-        }
-        chosenCell = ownedEnchancedProperties[choice - 1];
         chosenCell.removeHouse();
         player.addBalance(Constants.HOUSE_PRICE / 2);
     }
 
-    public int calculateRent(Cell cell) {
+    public static int calculateRent(Cell cell) {
         int rent = cell.getRent();
         Player cellOwner = cell.getOwner();
 
-        Set[] ownedSets = gameLogic.getOwnedSets(cellOwner);
+        Set[] ownedSets = GameLogic.getOwnedSets(cellOwner);
 
         if (cell.belongsTo(ownedSets)) {
             rent *= 2;
@@ -228,7 +172,7 @@ public class Bank {
         return rent;
     }
 
-    public void payRent(Player player, Cell cell) {
+    public static void payRent(Player player, Cell cell) {
         int rent = calculateRent(cell);
 
         //if the player can afford rent
@@ -243,7 +187,7 @@ public class Bank {
         }
     }
     
-    public void payRent(Player player, Cell cell, int rent){
+    public static void payRent(Player player, Cell cell, int rent){
         
         //if the player can afford rent
         if (canPay(player.getBalance(), rent, true)) {
@@ -257,14 +201,14 @@ public class Bank {
         }
     }
 
-    public void bankruptPlayer(Player player, Cell cell) {
+    public static void bankruptPlayer(Player player, Cell cell) {
         System.out.println(player.getName() + " went bankrupt!");
-        Cell[] ownedProperties = gameLogic.getOwnedProperties(player);
+        Cell[] ownedProperties = GameLogic.getOwnedProperties(player);
         for (Cell ownedProperty : ownedProperties) {
             ownedProperty.setOwner(cell.getOwner() != null ? cell.getOwner() : null);
             ownedProperty.resetHouseNumber();
         }
-        gameLogic.scores.add(player);
+        GameLogic.scores.add(player);
         player.setInGame(false);
     }
 }

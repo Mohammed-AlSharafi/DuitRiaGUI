@@ -4,6 +4,7 @@
  */
 package com.alephnought.duitriagui.model;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 /**
@@ -18,12 +19,14 @@ public class Player {
     private int lapNumber;
     private int orderRoll; //for sorting the player's based on first roll.
     private Circle circle;
+    private Color circleColor;
     private boolean canMove;
     private boolean isJailed;
     private boolean inGame;
 
-    public Player(String name){ //constructor setting starting values
+    public Player(String name, Color circleColor){ //constructor setting starting values
         this.name = name;
+        this.circleColor = circleColor;
         balance = Constants.INITIAL_BALANCE;
         position = 1; //setting default starting position
         lapNumber = 1;
@@ -34,9 +37,10 @@ public class Player {
 
     //creates a circle for each player
     public void createCircle(){
-        this.circle = new Circle();
-        this.circle.setRadius(15);
-        this.circle.setTranslateZ(-200);
+        circle = new Circle();
+        circle.setFill(circleColor);
+        circle.setRadius(15);
+        circle.toFront();
     }
 
     public void setBoardPosition(int x, int y){
@@ -51,6 +55,9 @@ public class Player {
         setBoardPosition(position[0], position[1]);
     }
 
+    public Color getCircleColor() {
+        return circleColor;
+    }
     public Circle getCircle() {
         return circle;
     }
@@ -81,11 +88,15 @@ public class Player {
     }
 
     public void addBalance(int amount) {
+
         balance += amount;
+        GameLogic.setPlayerBalanceLbl(balance);
+
     }
 
     public void deductBalance(int amount) {
         balance -= amount;
+        GameLogic.setPlayerBalanceLbl(balance);
     }
 
     public int getBalance() {
@@ -93,8 +104,8 @@ public class Player {
     }
 
     public void setPosition(int position) {
-
         this.position = position;
+        GameLogic.currentCell = GameLogic.getCellByPosition(position);
         updateBoardPosition();
     }
 
