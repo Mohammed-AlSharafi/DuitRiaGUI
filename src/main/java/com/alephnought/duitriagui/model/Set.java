@@ -6,11 +6,6 @@ package com.alephnought.duitriagui.model;
 
 import java.util.Arrays;
 import java.util.Comparator;
-
-/**
- *
- * @author Mohammed
- */
 public class Set {
 
     private String name;

@@ -12,11 +12,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-/**
- *
- * @author Mohammed
- */
 public class GameLogic {
 
     private static GameboardController gameboardController;
@@ -24,25 +19,42 @@ public class GameLogic {
         GameLogic.gameboardController = gameboardController;
     }
     public static ArrayList<Player> players = new ArrayList<>();
+    public static ArrayList<Player> forfeitedPlayers = new ArrayList<>();
+    public static ArrayList<Player> bankruptPlayers = new ArrayList<>();
+    public static ArrayList<Player> scores = new ArrayList<>();
     public static Player currentPlayer;
     public static Cell currentCell;
-    public static ArrayList<Player> scores = new ArrayList<>();
     Fate fate = new Fate(this);
     Action action = new Action(this);
+    public static int roundCounter = 0;
+    public static int chosenNumberOfRounds = 0;
+
+    //[GUI] set the output text in the gameboard
     public static void setOutputText(String text){
         gameboardController.setBoardOutput(text);
     }
 
+    //[GUI] set the dice image in the gameboard
     public static void setDiceImage(int diceNumber, int diceValue){
         gameboardController.setDiceImage(diceNumber, diceValue);
     }
 
+    //[GUI] set the house counter label in the gameboard
+    public static void setHouseCounterLbl(int cellNumber, int houseNumber){
+        gameboardController.setHouseCounterLbl(cellNumber, "Houses="+houseNumber);
+    }
+
+    //[GUI] set the player name label in the gameboard
     public static void setPlayerNameLbl(String name){
         gameboardController.setPlayerNameLbl(name);
     }
+
+    //[GUI] set the player balance label in the gameboard
     public static void setPlayerBalanceLbl(int balance){
-        gameboardController.setPlayerBalanceLbl(Integer.toString(balance));
+        gameboardController.setPlayerBalanceLbl("RM "+balance);
     }
+
+    //[GUI] set the player color circle in the gameboard
     public static void setPlayerColorCircle(Color color){
         gameboardController.setPlayerColorCircle(color);
     }
@@ -67,7 +79,10 @@ public class GameLogic {
             // Check if a new round is starting
             if (currentIndex == players.size() - 1) {
                 // Perform any actions needed at the start of a new round
-                System.out.println("Starting a new round!");
+                GameLogic.roundCounter++;
+                if (chosenNumberOfRounds != 0 && GameLogic.roundCounter >= chosenNumberOfRounds) {
+                    getScoreBoard();
+                }
             }
         }
         setPlayerNameLbl(currentPlayer.getName());
@@ -150,6 +165,10 @@ public class GameLogic {
         return Board.cells[position - 1];
     }
 
+    public static int getCellPosition(Cell cell){
+        return Arrays.asList(Board.cells).indexOf(cell) + 1;
+    }
+
     public static Cell[] getOwnedProperties(Player player) {
 
         List<Cell> ownedProperties = new ArrayList<>();
@@ -213,15 +232,20 @@ public class GameLogic {
     }
 
     public void getScoreBoard() {
-        Collections.sort(scores, Comparator.comparingInt(Player::getBalance).reversed());
+        System.out.println("Game Over!");
+        for (Player player : players) {
+            if (player.getInGame()) {
+                scores.add(player);
 
-        System.out.println("Scoreboard: ");
-
-        int counter = 1;
-        for (Player player : scores) {
-            System.out.println(counter + ". " + player.getName());
-            counter++;
+            }
         }
+        Collections.reverse(bankruptPlayers);
+        Collections.reverse(forfeitedPlayers);
+        Collections.sort(scores, Comparator.comparing(Player::getBalance));
+        scores.addAll(bankruptPlayers);
+        scores.addAll(forfeitedPlayers);
+
+        GameboardController.showListDialog(scores.toArray(), "Scoreboard", "Players Scoreboard:");
         System.exit(0);
     }
 }

@@ -5,16 +5,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 public class StartScreenController {
 
@@ -48,11 +47,26 @@ public class StartScreenController {
     private TextField Name3;
     @FXML
     private TextField Name4;
+    @FXML
+    private TextField customRoundsTextField;
+    @FXML
+    private CheckBox customRoundsCheckBox;
 
     @FXML
     private void initialize() {
-        playerRows.setVisible(false);
-
+        playerRows.setDisable(true);
+        customRoundsTextField.setDisable(true);
+        //filter to allow only numbers in the textfield
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String newText = change.getControlNewText();
+            if (Pattern.matches("[0-9]*", newText)) {
+                return change;
+            } else {
+                return null;
+            }
+        };
+        TextFormatter<String> textFormatter = new TextFormatter<>(filter);
+        customRoundsTextField.setTextFormatter(textFormatter);
     }
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -78,6 +92,12 @@ public class StartScreenController {
                 }
             }
         GameLogic.initializePlayers(playerNames);
+            if(customRoundsCheckBox.isSelected()){
+                if(customRoundsTextField.getText().equals("")) {
+                    GameLogic.chosenNumberOfRounds = 0; //set to 0 so that game continues as if custom rounds is not selected.
+                }
+                GameLogic.chosenNumberOfRounds = Integer.parseInt(customRoundsTextField.getText());
+            }
         try {
             // Load the FXML file for the second window
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Gameboard.fxml"));
@@ -95,21 +115,30 @@ public class StartScreenController {
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately
         }
-    }}
+    }
+    }
+
+    public void onCustomRoundsCheckBoxClicked() {
+        if (customRoundsCheckBox.isSelected()) {
+            customRoundsTextField.setDisable(false);
+        } else {
+            customRoundsTextField.setDisable(true);
+        }
+    }
     @FXML
     private void handleRadioButtonAction() {
         RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
         if (selectedRadioButton != null) {
-            playerRows.setVisible(true);
+            playerRows.setDisable(false);
             if (selectedRadioButton == radio2Players){
-                player3Row.setVisible(false);
-                player4Row.setVisible(false);
+                player3Row.setDisable(true);
+                player4Row.setDisable(true);
             } else if (selectedRadioButton == radio3Players) {
-                player3Row.setVisible(true);
-                player4Row.setVisible(false);
+                player3Row.setDisable(false);
+                player4Row.setDisable(true);
             }else if (selectedRadioButton == radio4Players) {
-                player3Row.setVisible(true);
-                player4Row.setVisible(true);
+                player3Row.setDisable(false);
+                player4Row.setDisable(false);
             }
         }
     }

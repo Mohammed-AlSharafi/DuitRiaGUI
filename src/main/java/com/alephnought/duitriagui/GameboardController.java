@@ -46,287 +46,52 @@ public class GameboardController implements Initializable {
     @FXML
     private Label NamePlayer4;
     @FXML
-    private Pane Level1;
-    @FXML
-    private Pane Level2;
-    @FXML
-    private Label BuildHouses;
-    @FXML
-    private Pane Level3;
-    @FXML
-    private Label NumberOfHousesToBuild;
-    @FXML
-    private Slider sliderToBuildHouses;
-    @FXML
-    private Button deal1;
-    @FXML
     private ImageView diceImage2;
     @FXML
-    private Circle Player1;
+    private Label Houses2;
     @FXML
-    private Circle Player2;
+    private Label Houses4;
     @FXML
-    private Circle Player3;
+    private Label Houses7;
     @FXML
-    private Circle Player4;
+    private Label Houses9;
     @FXML
-    private Label LandABuyOrNot;
+    private Label Houses10;
     @FXML
-    private Pane level3Rents;
+    private Label Houses12;
     @FXML
-    private Label LandARentEmpty;
+    private Label Houses14;
     @FXML
-    private Label LandARent1House;
+    private Label Houses15;
     @FXML
-    private Label LandARent2Houses;
+    private Label Houses17;
     @FXML
-    private Label LandARent3Houses;
+    private Label Houses19;
     @FXML
-    private Label LandARent4Houses;
+    private Label Houses20;
     @FXML
-    private Label LandBRentEmpty;
+    private Label Houses22;
     @FXML
-    private Label LandBRent1House;
+    private Label Houses24;
     @FXML
-    private Label LandBRent2Houses;
+    private Label Houses25;
     @FXML
-    private Label LandBRent3Houses;
+    private Label Houses27;
     @FXML
-    private Label LandBRent4Houses;
+    private Label Houses29;
     @FXML
-    private Label LandCRentEmpty;
+    private Label Houses30;
     @FXML
-    private Label LandCRent1House;
+    private Label Houses32;
     @FXML
-    private Label LandCRent2Houses;
+    private Label Houses33;
     @FXML
-    private Label LandCRent3Houses;
+    private Label Houses35;
     @FXML
-    private Label LandCRent4Houses;
+    private Label Houses38;
     @FXML
-    private Label LandDRentEmpty;
-    @FXML
-    private Label LandDRent1House;
-    @FXML
-    private Label LandDRent2Houses;
-    @FXML
-    private Label LandDRent3Houses;
-    @FXML
-    private Label LandDRent4Houses;
-    @FXML
-    private Label LandERentEmpty;
-    @FXML
-    private Label LandERent1House;
-    @FXML
-    private Label LandERent2Houses;
-    @FXML
-    private Label LandERent3Houses;
-    @FXML
-    private Label LandERent4Houses;
-    @FXML
-    private Label LandFRentEmpty;
-    @FXML
-    private Label LandFRent1House;
-    @FXML
-    private Label LandFRent2Houses;
-    @FXML
-    private Label LandFRent3Houses;
-    @FXML
-    private Label LandFRent4Houses;
-    @FXML
-    private Label LandGRentEmpty;
-    @FXML
-    private Label LandGRent1House;
-    @FXML
-    private Label LandGRent2Houses;
-    @FXML
-    private Label LandGRent3Houses;
-    @FXML
-    private Label LandGRent4Houses;
-    @FXML
-    private Label Land9RentEmpty;
-    @FXML
-    private Label Land9Rent1House;
-    @FXML
-    private Label Land9Rent2Houses;
-    @FXML
-    private Label Land9Rent3Houses;
-    @FXML
-    private Label Land9Rent4Houses;
-    @FXML
-    private Label Land16RentEmpty;
-    @FXML
-    private Label Land16Rent1House;
-    @FXML
-    private Label Land9;
-    @FXML
-    private Label Land8;
-    @FXML
-    private Label Land7;
-    @FXML
-    private Label Land6;
-    @FXML
-    private Label Land5;
-    @FXML
-    private Label Land4;
-    @FXML
-    private Label Land3;
-    @FXML
-    private Label Land2;
-    @FXML
-    private Label Land1;
-    @FXML
-    private Label Land21;
-    @FXML
-    private Label Land22;
-    @FXML
-    private Label Land23;
-    @FXML
-    private Label Land24;
-    @FXML
-    private Label Land25;
-    @FXML
-    private Label Land26;
-    @FXML
-    private Label Land27;
-    @FXML
-    private Label Land28;
-    @FXML
-    private Label Land29;
-    @FXML
-    private Label Land19;
-    @FXML
-    private Label Land18;
-    @FXML
-    private Label Land17;
-    @FXML
-    private Label Land16;
-    @FXML
-    private Label Land15;
-    @FXML
-    private Label Land14;
-    @FXML
-    private Label Land13;
-    @FXML
-    private Label Land12;
-    @FXML
-    private Label Land11;
-    @FXML
-    private Label Land20;
-    @FXML
-    private Label Land31;
-    @FXML
-    private Label Land32;
-    @FXML
-    private Label Land33;
-    @FXML
-    private Label Land34;
-    @FXML
-    private Label Land35;
-    @FXML
-    private Label Land36;
-    @FXML
-    private Label Land37;
-    @FXML
-    private Label Land38;
-    @FXML
-    private Label Land39;
-    @FXML
-    private Label Land0;
-    @FXML
-    private Label Land10;
-    @FXML
-    private Label Land30;
-    @FXML
-    private Label Names;
-    @FXML
-    private Button BuyYes;
-    @FXML
-    private Button BuyNo;
-    @FXML
-    private Button BuildNo;
-    @FXML
-    private Button BuildYes;
-    @FXML
-    private Label Land16Rent2Houses;
-    @FXML
-    private Label Land16Rent3Houses;
-    @FXML
-    private Label Land16Rent4Houses;
-    @FXML
-    private Label Land18RentEmpty;
-    @FXML
-    private Label Land18Rent1House;
-    @FXML
-    private Label Land18Rent2Houses;
-    @FXML
-    private Label Land18Rent3Houses;
-    @FXML
-    private Label Land18Rent4Houses;
-    @FXML
-    private Label Land19RentEmpty;
-    @FXML
-    private Label Land19Rent1House;
-    @FXML
-    private Label Land19Rent2Houses;
-    @FXML
-    private Label Land19Rent3Houses;
-    @FXML
-    private Label Land19Rent4Houses;
-    @FXML
-    private Label Land24RentEmpty;
-    @FXML
-    private Label Land24Rent1House;
-    @FXML
-    private Label Land24Rent2Houses;
-    @FXML
-    private Label Land24Rent3Houses;
-    @FXML
-    private Label Land24Rent4Houses;
-    @FXML
-    private Label Land29RentEmpty;
-    @FXML
-    private Label Land29Rent1House;
-    @FXML
-    private Label Land29Rent2Houses;
-    @FXML
-    private Label Land29Rent3Houses;
-    @FXML
-    private Label Land29Rent4Houses;
-    @FXML
-    private Label Land34RentEmpty;
-    @FXML
-    private Label Land34Rent1House;
-    @FXML
-    private Label Land34Rent2Houses;
-    @FXML
-    private Label Land34Rent3Houses;
-    @FXML
-    private Label Land34Rent4Houses;
-    @FXML
-    private Label Land37RentEmpty;
-    @FXML
-    private Label Land37Rent1House;
-    @FXML
-    private Label Land37Rent2Houses;
-    @FXML
-    private Label Land37Rent3Houses;
-    @FXML
-    private Label Land37Rent4Houses;
-    @FXML
-    private Label Land39RentEmpty;
-    @FXML
-    private Label Land39Rent1House;
-    @FXML
-    private Label Land39Rent2Houses;
-    @FXML
-    private Label Land39Rent3Houses;
-    @FXML
-    private Label Land39Rent4Houses;
-    @FXML
-    private Label HousesCounterLand1;
-    @FXML
-    private Label HousesCounterLand3;
+    private Label Houses40;
+
     @FXML
     private Label HousesCounterLand6;
     @FXML
@@ -392,7 +157,29 @@ public class GameboardController implements Initializable {
 
     public static int userInput;
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        gameLogic = new GameLogic(this);
+        gameLogic.sortPlayers();
+        for(Player player : GameLogic.players){
+            setBoardOutput(boardOutputLabel.getText() + "\n" + player.getName() + " rolled a " + player.getOrderRoll());
+        }
+        gameLogic.nextTurn();
+        setBoardOutput(boardOutputLabel.getText()+ "\n" + GameLogic.currentPlayer.getName() + " starts first!");
+        int[] specialCells = {0, 2, 4, 7, 10, 17, 20, 22, 30, 33, 36, 38};
+        for(int i = 0; i < Board.cells.length; i++){
+            if(!contains(specialCells, i)){
+                System.out.println(Board.cells[i].getName());
+                Board.cells[i].createOwnerColoredCircle();
+                gameBoardPane.getChildren().add(Board.cells[i].getOwnerColoredCircle());
+            }
+        }
+        for (Player player : GameLogic.players){
+            player.createCircle();
+            gameBoardPane.getChildren().add(player.getCircle());
+            player.updateBoardPosition();
+        }
+    }
     public void setChooseSetList(Set[] sets) {
         String[] setNames = new String[sets.length];
         for(int i = 0; i < sets.length; i++) {
@@ -440,61 +227,11 @@ public class GameboardController implements Initializable {
         }
     }
 
-    //show a dialog with yes or no buttons, returns true or false depending on button pressed.
-    public static boolean showChoiceDialog(String choice) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Choice Dialog");
-        alert.setHeaderText(choice);
-        alert.setContentText("Choose your option.");
-
-        // Create "Yes" and "No" buttons
-        ButtonType buttonTypeYes = new ButtonType("Yes");
-        ButtonType buttonTypeNo = new ButtonType("No");
-
-        // Set buttons
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
-        // Show and wait for the user's choice
-        Optional<ButtonType> result = alert.showAndWait();
-
-        // Handle the user's choice
-        if (result.isPresent() && result.get() == buttonTypeYes) {
-            return true;
-            // Add your code for "Yes" option
-        } else {
-            return false;
-            // Add your code for "No" option or do nothing
-        }
-    }
-
-    public static void showErrorDialog(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    //set the text of the board output label
-    public void setBoardOutput(String text){
-        boardOutputLabel.setText(text);
-        boardOutputLabel.setTextAlignment(TextAlignment.CENTER);
-    }
-    public void onRollDiceBtnClicked(){
-        Player player = GameLogic.currentPlayer;
-        if (player.getCanMove()) {
-            gameLogic.rollAndGetAction(player);
-        } else {
-            gameLogic.getAction(player);
-        }
-        gameLogic.nextTurn();
-    }
-
     //show a dialog with a list of items, returns the selected item
-    public static <T> T showListDialog(T[] itemList) {
+    public static <T> T showListDialog(T[] itemList, String title, String headerText) {
         Dialog<T> dialog = new Dialog<>();
-        dialog.setTitle("List Dialog");
-        dialog.setHeaderText("Select an item:");
+        dialog.setTitle(title);
+        dialog.setHeaderText(headerText);
 
         // Set the button types
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
@@ -521,6 +258,53 @@ public class GameboardController implements Initializable {
         return dialog.showAndWait().orElse(null);
     }
 
+    //show a dialog with yes or no buttons, returns true or false depending on button pressed.
+    public static boolean showChoiceDialog(String choice) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Choice Dialog");
+        alert.setHeaderText(choice);
+        alert.setContentText("Choose your option.");
+
+        // Create "Yes" and "No" buttons
+        ButtonType buttonTypeYes = new ButtonType("Yes");
+        ButtonType buttonTypeNo = new ButtonType("No");
+
+        // Set buttons
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        // Show and wait for the user's choice
+        Optional<ButtonType> result = alert.showAndWait();
+
+        // Handle the user's choice
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void showErrorDialog(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    //set the text of the board output label
+    public void setBoardOutput(String text){
+        boardOutputLabel.setText(text);
+        boardOutputLabel.setTextAlignment(TextAlignment.CENTER);
+    }
+    public void onRollDiceBtnClicked(){
+        Player player = GameLogic.currentPlayer;
+        if (player.getCanMove()) {
+            gameLogic.rollAndGetAction(player);
+        } else {
+            gameLogic.getAction(player);
+        }
+        gameLogic.nextTurn();
+    }
 
     public void onBuyHouseBtnClicked(){
         Bank.buyHouse(GameLogic.currentPlayer);
@@ -535,27 +319,10 @@ public class GameboardController implements Initializable {
     public void onForfeitBtnClicked(){
         System.out.println("Player forfeited");
         GameLogic.currentPlayer.forfeit();
+        Bank.bankruptPlayer(GameLogic.currentPlayer, null);
         gameLogic.nextTurn();
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        gameLogic = new GameLogic(this);
-        gameLogic.sortPlayers();
-        gameLogic.nextTurn();
-        int[] specialCells = {0, 2, 4, 7, 10, 12, 19, 22, 24, 32, 35, 37, 40}; //fix
-        for(int i = 0; i < Board.cells.length; i++){
-            if(!contains(specialCells, i)){
-                System.out.println(Board.cells[i].getName());
-                Board.cells[i].createOwnerColoredCircle();
-                gameBoardPane.getChildren().add(Board.cells[i].getOwnerColoredCircle());
-            }
-        }
-        for (Player player : GameLogic.players){
-            player.createCircle();
-            gameBoardPane.getChildren().add(player.getCircle());
-            player.updateBoardPosition();
-        }
-    }
+
     public boolean contains (int[] array, int value){
         for(int i = 0; i < array.length; i++){
             if(array[i] == value){
@@ -563,5 +330,21 @@ public class GameboardController implements Initializable {
             }
         }
         return false;
+    }
+
+    public void setHouseCounterLbl(int cellNumber, String string){
+        Label label = getHouseCounterLblByIndex(cellNumber);
+        label.setText(string);
+    }
+    @FXML
+    public Label getHouseCounterLblByIndex(int number) {
+        try {
+            // Use reflection to get the label by name
+            String labelName = "Houses" + number;
+            return (Label) getClass().getDeclaredField(labelName).get(this);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+            return null; // Handle the case where the label with the given number doesn't exist
+        }
     }
 }

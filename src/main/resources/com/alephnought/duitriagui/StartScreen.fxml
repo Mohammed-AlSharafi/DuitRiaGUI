@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="294.0" maxWidth="485.0" minHeight="294.0" minWidth="485.0" prefHeight="294.0" prefWidth="485.0" style="-fx-background-color: #CDEACE;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alephnought.duitriagui.StartScreenController">
     <children>
-      <GridPane layoutX="25.0" layoutY="29.0" prefHeight="99.0" prefWidth="329.0">
+      <GridPane layoutX="25.0" layoutY="29.0" prefHeight="99.0" prefWidth="286.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
@@ -102,5 +102,7 @@
             </HBox>
          </children>
       </GridPane>
+      <CheckBox fx:id="customRoundsCheckBox" layoutX="327.0" layoutY="131.0" mnemonicParsing="false" onAction="#onCustomRoundsCheckBoxClicked" text="Custom Rounds" />
+      <TextField fx:id="customRoundsTextField" layoutX="327.0" layoutY="96.0" prefHeight="26.0" prefWidth="43.0" />
     </children>
 </AnchorPane>

@@ -5,13 +5,9 @@
 package com.alephnought.duitriagui.model;
 
 import com.alephnought.duitriagui.GameboardController;
+import javafx.scene.paint.Color;
 
 import java.util.Scanner;
-
-/**
- *
- * @author Mohammed
- */
 public class Bank {
 
     // check if player can pay for an item with balance given.
@@ -31,8 +27,10 @@ public class Bank {
     }
 
     public static void buyProperty(Player player, Cell cell) {
-        cell.setOwner(player);
-        player.deductBalance(cell.getPrice());
+        if(canPay(player.getBalance(), cell.getPrice())) {
+            cell.setOwner(player);
+            player.deductBalance(cell.getPrice());
+        }
     }
 
     public static void sellProperty(Player player) {
@@ -47,7 +45,7 @@ public class Bank {
         }
 
         //prompt user to choose a property.
-        chosenCell = GameboardController.showListDialog(ownedProperties);
+        chosenCell = GameboardController.showListDialog(ownedProperties, "Sell Property", "Choose a property to sell");
 
         //if property belongs to owned sets
         if (chosenCell.belongsTo(ownedSets)) {
@@ -82,7 +80,7 @@ public class Bank {
             return;
         }
 
-        chosenSet = GameboardController.showListDialog(ownedSets);
+        chosenSet = GameboardController.showListDialog(ownedSets, "Buy House", "Choose a set to buy a house");
 
         //Make sure chosenSet is not null
         if(chosenSet == null){
@@ -94,7 +92,7 @@ public class Bank {
         //check if all houses in set have 4 houses.
         allHousesAreFour = true;
         for (Cell cell : chosenSetCells) {
-            allHousesAreFour = cell.getHouseNumber() == 4;
+            allHousesAreFour = allHousesAreFour && (cell.getHouseNumber() == 4);
         }
 
         if (allHousesAreFour) {
@@ -121,7 +119,7 @@ public class Bank {
         else if (!chosenSet.getBuildEvenly()) {
 
 //            prompt user to choose a cell.
-                chosenCell = GameboardController.showListDialog(chosenSetCells);
+                chosenCell = GameboardController.showListDialog(chosenSetCells, "Buy House", "Choose a property to buy a house");
                 if(chosenCell == null){
                     return;
                 }
@@ -144,7 +142,7 @@ public class Bank {
             return;
         }
 //        prompt user to choose a property.
-        chosenCell = GameboardController.showListDialog(ownedEnhancedProperties);
+        chosenCell = GameboardController.showListDialog(ownedEnhancedProperties, "Sell House", "Choose a property to sell a house");
 
 //        make sure chosenCell is not null
         if(chosenCell == null){
@@ -202,13 +200,22 @@ public class Bank {
     }
 
     public static void bankruptPlayer(Player player, Cell cell) {
-        System.out.println(player.getName() + " went bankrupt!");
         Cell[] ownedProperties = GameLogic.getOwnedProperties(player);
         for (Cell ownedProperty : ownedProperties) {
-            ownedProperty.setOwner(cell.getOwner() != null ? cell.getOwner() : null);
+            if(cell != null){
+                ownedProperty.setOwner(cell.getOwner() != null ? cell.getOwner() : null);
+            }else{
+                ownedProperty.setOwner(null);
+            }
             ownedProperty.resetHouseNumber();
         }
-        GameLogic.scores.add(player);
+        if(player.getIsForfeited()){
+            GameLogic.forfeitedPlayers.add(player);
+        }else{
+            GameLogic.bankruptPlayers.add(player);
+        }
         player.setInGame(false);
+        player.setIsBankrupt(true);
+        player.setBoardPosition(-10, -10); // get player out of the board.
     }
 }

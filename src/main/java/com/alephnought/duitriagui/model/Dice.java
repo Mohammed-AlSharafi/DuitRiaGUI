@@ -4,11 +4,6 @@
  */
 package com.alephnought.duitriagui.model;
 import java.util.Random;
-
-/**
- *
- * @author Mohammed
- */
 public class Dice {
 
     public static int[] rollDice(){

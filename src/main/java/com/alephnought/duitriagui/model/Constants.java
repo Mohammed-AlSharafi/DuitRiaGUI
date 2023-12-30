@@ -5,10 +5,6 @@
 package com.alephnought.duitriagui.model;
 import javafx.scene.paint.Color;
 
-/**
- *
- * @author Mohammed
- */
 public final class Constants {
     public static final int INITIAL_BALANCE = 15000000;
     public static final int SALARY = 2000000;

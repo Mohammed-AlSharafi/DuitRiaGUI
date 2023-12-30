@@ -44,6 +44,9 @@ public class Fate {
                 int totalBirthdayGift = 0;
                 GameLogic.setOutputText(currentPlayer.getName() + " drew a Fate card: \"It's your birthday, you get "+Constants.BIRTHDAY_GIFT+" from each player!\"");
                 for (Player player : gameLogic.getPlayers()) {
+                    if(player == currentPlayer){
+                        continue;
+                    }
                     if(Bank.canPay(player.getBalance(), Constants.BIRTHDAY_GIFT, true)){
                         player.deductBalance(Constants.BIRTHDAY_GIFT);
                     }
@@ -53,7 +56,7 @@ public class Fate {
                     }
                     totalBirthdayGift+=Constants.BIRTHDAY_GIFT;
                 }
-                currentPlayer.addBalance(Constants.BIRTHDAY_GIFT);
+                currentPlayer.addBalance(totalBirthdayGift);
                 break;
             case 3:
                 GameLogic.setOutputText(currentPlayer.getName() + " drew a Fate card: \"Bank Made an error in your favor. You get RM"+Constants.BANK_ERROR+"!\"");

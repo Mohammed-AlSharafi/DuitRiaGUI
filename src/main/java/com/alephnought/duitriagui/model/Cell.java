@@ -10,11 +10,6 @@ import javafx.scene.shape.Circle;
 
 import java.util.Arrays;
 import java.util.List;
-
-/**
- *
- * @author Mohammed
- */
 public class Cell {
 
     private String name;
@@ -74,10 +69,14 @@ public class Cell {
 
     public void addHouse() {
         houseNumber++;
+        int position = GameLogic.getCellPosition(this);
+        GameLogic.setHouseCounterLbl(position, houseNumber);
     }
 
     public void removeHouse() {
         houseNumber--;
+        int position = GameLogic.getCellPosition(this);
+        GameLogic.setHouseCounterLbl(position, houseNumber);
     }
 
     public int getHouseNumber() {

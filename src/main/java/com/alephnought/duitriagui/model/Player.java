@@ -6,11 +6,6 @@ package com.alephnought.duitriagui.model;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-/**
- *
- * @author Mohammed
- */
 public class Player {
 
     private String name;
@@ -23,6 +18,9 @@ public class Player {
     private boolean canMove;
     private boolean isJailed;
     private boolean inGame;
+    public boolean isForfeited;
+
+    public boolean isBankrupt;
 
     public Player(String name, Color circleColor){ //constructor setting starting values
         this.name = name;
@@ -33,6 +31,8 @@ public class Player {
         canMove = true;
         isJailed = false;
         inGame = true;
+        isForfeited = false;
+        isBankrupt = false;
     }
 
     //creates a circle for each player
@@ -76,6 +76,7 @@ public class Player {
 
     public void forfeit() {
         inGame = false;
+        isForfeited = true;
     }
 
     //setters and getters
@@ -170,5 +171,20 @@ public class Player {
 
     public boolean getInGame() {
         return inGame;
+    }
+
+    public boolean getIsForfeited(){
+        return isForfeited;
+    }
+
+    public boolean getIsBankrupt(){
+        return isBankrupt;
+    }
+    public void setIsBankrupt(boolean isBankrupt){
+        this.isBankrupt = isBankrupt;
+    }
+
+    public String toString(){
+        return name;
     }
 }

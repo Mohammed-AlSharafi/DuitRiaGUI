@@ -2,11 +2,6 @@
 package com.alephnought.duitriagui.model;
 
 import com.alephnought.duitriagui.GameboardController;
-
-/**
- *
- * @author Mohammed
- */
 public class Action {
 
     private final GameLogic gameLogic;
