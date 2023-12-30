@@ -323,6 +323,12 @@ public class GameboardController implements Initializable {
         gameLogic.nextTurn();
     }
 
+    public void onEndGameBtnClicked(){
+        gameLogic.getScoreBoard();
+    }
+
+    //used to check if an array contains a value.
+    //used in checking for special cells when adding owner colored circles in initialize function.
     public boolean contains (int[] array, int value){
         for(int i = 0; i < array.length; i++){
             if(array[i] == value){

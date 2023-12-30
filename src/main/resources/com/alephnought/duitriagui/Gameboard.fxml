@@ -821,6 +821,6 @@
       <Line endX="232.4000244140625" endY="-7.300008296966553" layoutX="840.0" layoutY="11.0" startX="-29.60003662109375" startY="-7.30000638961792" />
       <Line endX="95.9000244140625" endY="-40.90000534057617" layoutX="976.0" layoutY="16.0" startX="95.9000244140625" startY="710.0" />
       <Line endX="160.4000244140625" layoutX="911.0" layoutY="723.0" startX="-100.0" />
-      <Button fx:id="onEndGameBtnClicked" layoutX="990.0" layoutY="686.0" mnemonicParsing="false" text="End Game" />
+      <Button layoutX="990.0" layoutY="686.0" mnemonicParsing="false" onAction="#onEndGameBtnClicked" text="End Game" />
     </children>
 </AnchorPane>
