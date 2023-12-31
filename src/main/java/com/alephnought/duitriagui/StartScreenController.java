@@ -51,11 +51,15 @@ public class StartScreenController {
     private TextField customRoundsTextField;
     @FXML
     private CheckBox customRoundsCheckBox;
+    @FXML
+    private Button startButton;
 
     @FXML
     private void initialize() {
         playerRows.setDisable(true);
         customRoundsTextField.setDisable(true);
+        startButton.setDisable(true);
+
         //filter to allow only numbers in the textfield
         UnaryOperator<TextFormatter.Change> filter = change -> {
             String newText = change.getControlNewText();
@@ -127,6 +131,7 @@ public class StartScreenController {
     }
     @FXML
     private void handleRadioButtonAction() {
+        startButton.setDisable(false);
         RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
         if (selectedRadioButton != null) {
             playerRows.setDisable(false);

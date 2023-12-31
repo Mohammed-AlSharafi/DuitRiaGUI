@@ -129,6 +129,9 @@ public class GameLogic {
         //initializing a Player object for each player.
         for (int i = 0; i < playerNames.length; i++) {
             String playerName = playerNames[i];
+            if (playerName.equals("")) {
+                playerName = "Player " + (i + 1);
+            }
             Player player = new Player(playerName, Constants.COLORS[i]);
             players.add(player);
         }
@@ -236,12 +239,16 @@ public class GameLogic {
         for (Player player : players) {
             if (player.getInGame()) {
                 scores.add(player.getBalance() + "RM - " + player.getName());
-
             }
         }
+
         Collections.reverse(bankruptPlayers);
+
         Collections.reverse(forfeitedPlayers);
+
         Collections.sort(scores);
+        Collections.reverse(scores);
+
         scores.addAll(bankruptPlayers);
         scores.addAll(forfeitedPlayers);
 
