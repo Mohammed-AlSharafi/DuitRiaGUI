@@ -19,9 +19,9 @@ public class GameLogic {
         GameLogic.gameboardController = gameboardController;
     }
     public static ArrayList<Player> players = new ArrayList<>();
-    public static ArrayList<Player> forfeitedPlayers = new ArrayList<>();
-    public static ArrayList<Player> bankruptPlayers = new ArrayList<>();
-    public static ArrayList<Player> scores = new ArrayList<>();
+    public static ArrayList<String> forfeitedPlayers = new ArrayList<>();
+    public static ArrayList<String> bankruptPlayers = new ArrayList<>();
+    public static ArrayList<String> scores = new ArrayList<>();
     public static Player currentPlayer;
     public static Cell currentCell;
     Fate fate = new Fate(this);
@@ -55,7 +55,7 @@ public class GameLogic {
     }
 
     //[GUI] set the player color circle in the gameboard
-    public static void setPlayerColorCircle(Color color){
+    private void setPlayerColorCircle(Color color){
         gameboardController.setPlayerColorCircle(color);
     }
 
@@ -235,13 +235,13 @@ public class GameLogic {
         System.out.println("Game Over!");
         for (Player player : players) {
             if (player.getInGame()) {
-                scores.add(player);
+                scores.add(player.getBalance() + "RM - " + player.getName());
 
             }
         }
         Collections.reverse(bankruptPlayers);
         Collections.reverse(forfeitedPlayers);
-        Collections.sort(scores, Comparator.comparing(Player::getBalance));
+        Collections.sort(scores);
         scores.addAll(bankruptPlayers);
         scores.addAll(forfeitedPlayers);
 

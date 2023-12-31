@@ -210,9 +210,9 @@ public class Bank {
             ownedProperty.resetHouseNumber();
         }
         if(player.getIsForfeited()){
-            GameLogic.forfeitedPlayers.add(player);
+            GameLogic.forfeitedPlayers.add("Forfeited - " + player.getName());
         }else{
-            GameLogic.bankruptPlayers.add(player);
+            GameLogic.bankruptPlayers.add("Bankrupted - " + player.getName());
         }
         player.setInGame(false);
         player.setIsBankrupt(true);

@@ -146,16 +146,7 @@ public class GameboardController implements Initializable {
     private Label playerBalanceLbl;
     @FXML
     private Label boardOutputLabel;
-    @FXML
-    private Button RollDiceBtn;
-    @FXML
-    private ListView chooseSetList;
-    @FXML
-    private ListView choosePropertyList;
-
     private GameLogic gameLogic;
-
-    public static int userInput;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -180,23 +171,52 @@ public class GameboardController implements Initializable {
             player.updateBoardPosition();
         }
     }
-    public void setChooseSetList(Set[] sets) {
-        String[] setNames = new String[sets.length];
-        for(int i = 0; i < sets.length; i++) {
-            setNames[i] = sets[i].getName();
+
+    public void onRollDiceBtnClicked(){
+        Player player = GameLogic.currentPlayer;
+        if (player.getCanMove()) {
+            gameLogic.rollAndGetAction(player);
+        } else {
+            gameLogic.getAction(player);
         }
-        chooseSetList.getItems().clear();
-        chooseSetList.getItems().addAll(setNames);
+        gameLogic.nextTurn();
     }
 
-    public void setChoosePropertyList(Cell[] cells) {
-        String[] cellNames = new String[cells.length];
-        for(int i = 0; i < cells.length; i++) {
-            cellNames[i] = cells[i].getName();
-        }
-        choosePropertyList.getItems().clear();
-        choosePropertyList.getItems().addAll(cellNames);
+
+
+//    ***Button Handlers***
+
+
+
+    public void onBuyHouseBtnClicked(){
+        Bank.buyHouse(GameLogic.currentPlayer);
     }
+    public void onSellPropertyBtnClicked(){
+        Bank.sellProperty(GameLogic.currentPlayer);
+    }
+    public void onSellHouseBtnClicked(){
+        Bank.sellHouse(GameLogic.currentPlayer);
+    }
+
+    public void onForfeitBtnClicked(){
+        System.out.println("Player forfeited");
+        GameLogic.currentPlayer.forfeit();
+        Bank.bankruptPlayer(GameLogic.currentPlayer, null);
+        gameLogic.nextTurn();
+    }
+    public void onEndGameBtnClicked(){
+        gameLogic.getScoreBoard();
+    }
+
+
+
+//     ***GUI board Setters & Getters***
+
+
+
+    /*setting visible elements values such as board output,
+     player name, player balance, dice images, and house counters*/
+
 
     public void setPlayerNameLbl(String text) {
         playerNameLbl.setText(text);
@@ -206,9 +226,12 @@ public class GameboardController implements Initializable {
         playerBalanceLbl.setText(text);
     }
 
+    //set the player color circle by color. used when initiating players in initializePlayers function.
     public void setPlayerColorCircle(Color color){
         playerColorCircle.setFill(color);
     }
+
+    //set the dice image by dice number.
     public void setDiceImage(int diceNumber, int diceValue) {
         String imagePath = String.format("/dice%d.png", diceValue);
         URL imageURL = getClass().getResource(imagePath);
@@ -226,8 +249,40 @@ public class GameboardController implements Initializable {
             System.out.println("Failed to load image: " + imagePath);
         }
     }
+    //set the house counter label by index.
+    public void setHouseCounterLbl(int cellNumber, String string){
+        Label label = getHouseCounterLblByIndex(cellNumber);
+        label.setText(string);
+    }
 
-    //show a dialog with a list of items, returns the selected item
+    //get the house counter label by index.
+    @FXML
+    public Label getHouseCounterLblByIndex(int number) {
+        try {
+            // Use reflection to get the label by name
+            String labelName = "Houses" + number;
+            return (Label) getClass().getDeclaredField(labelName).get(this);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+            return null; // Handle the case where the label with the given number doesn't exist
+        }
+    }
+
+    //set the text of the board output label
+    public void setBoardOutput(String text){
+        boardOutputLabel.setText(text);
+        boardOutputLabel.setTextAlignment(TextAlignment.CENTER);
+    }
+
+
+
+    // *** Dialogs ***
+
+
+
+    /*contains pop-up dialogs such as error dialog, yes/no dialog, and custom dialogs*/
+
+//    Show a dialog with a list of items and returns the selected item
     public static <T> T showListDialog(T[] itemList, String title, String headerText) {
         Dialog<T> dialog = new Dialog<>();
         dialog.setTitle(title);
@@ -258,7 +313,7 @@ public class GameboardController implements Initializable {
         return dialog.showAndWait().orElse(null);
     }
 
-    //show a dialog with yes or no buttons, returns true or false depending on button pressed.
+//    Show a dialog with yes or no buttons, returns true or false depending on button pressed.
     public static boolean showChoiceDialog(String choice) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Choice Dialog");
@@ -283,6 +338,7 @@ public class GameboardController implements Initializable {
         }
     }
 
+//    error dialog
     public static void showErrorDialog(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -291,41 +347,11 @@ public class GameboardController implements Initializable {
         alert.showAndWait();
     }
 
-    //set the text of the board output label
-    public void setBoardOutput(String text){
-        boardOutputLabel.setText(text);
-        boardOutputLabel.setTextAlignment(TextAlignment.CENTER);
-    }
-    public void onRollDiceBtnClicked(){
-        Player player = GameLogic.currentPlayer;
-        if (player.getCanMove()) {
-            gameLogic.rollAndGetAction(player);
-        } else {
-            gameLogic.getAction(player);
-        }
-        gameLogic.nextTurn();
-    }
 
-    public void onBuyHouseBtnClicked(){
-        Bank.buyHouse(GameLogic.currentPlayer);
-    }
-    public void onSellPropertyBtnClicked(){
-        Bank.sellProperty(GameLogic.currentPlayer);
-    }
-    public void onSellHouseBtnClicked(){
-        Bank.sellHouse(GameLogic.currentPlayer);
-    }
 
-    public void onForfeitBtnClicked(){
-        System.out.println("Player forfeited");
-        GameLogic.currentPlayer.forfeit();
-        Bank.bankruptPlayer(GameLogic.currentPlayer, null);
-        gameLogic.nextTurn();
-    }
+    // *** Utility Functions ***
 
-    public void onEndGameBtnClicked(){
-        gameLogic.getScoreBoard();
-    }
+
 
     //used to check if an array contains a value.
     //used in checking for special cells when adding owner colored circles in initialize function.
@@ -336,21 +362,5 @@ public class GameboardController implements Initializable {
             }
         }
         return false;
-    }
-
-    public void setHouseCounterLbl(int cellNumber, String string){
-        Label label = getHouseCounterLblByIndex(cellNumber);
-        label.setText(string);
-    }
-    @FXML
-    public Label getHouseCounterLblByIndex(int number) {
-        try {
-            // Use reflection to get the label by name
-            String labelName = "Houses" + number;
-            return (Label) getClass().getDeclaredField(labelName).get(this);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-            return null; // Handle the case where the label with the given number doesn't exist
-        }
     }
 }

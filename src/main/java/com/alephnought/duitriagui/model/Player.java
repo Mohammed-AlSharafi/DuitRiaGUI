@@ -40,6 +40,8 @@ public class Player {
         circle = new Circle();
         circle.setFill(circleColor);
         circle.setRadius(15);
+        circle.setStroke(Color.BLACK);
+        circle.setStrokeWidth(2.0);
         circle.toFront();
     }
 
