@@ -50,7 +50,7 @@ public class Cell {
         if(player!=null){
             ownerColoredCircle.setFill(player.getCircleColor());
         }else{
-            ownerColoredCircle.setFill(Color.BLACK);
+            ownerColoredCircle.setFill(Color.DARKGRAY);
         }
     }
     public void createOwnerColoredCircle() {
@@ -58,6 +58,10 @@ public class Cell {
         ownerColoredCircle.setRadius(3);
         ownerColoredCircle.setCenterX(position[0]);
         ownerColoredCircle.setCenterY(position[1]-5);
+        ownerColoredCircle.setFill(Color.DARKGRAY);
+        ownerColoredCircle.setStrokeWidth(1.0);
+        ownerColoredCircle.setStroke(Color.BLACK);
+        ownerColoredCircle.setOpacity(0.8);
     }
 
     public Circle getOwnerColoredCircle() {

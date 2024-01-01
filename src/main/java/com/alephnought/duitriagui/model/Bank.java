@@ -178,7 +178,7 @@ public class Bank {
             player.deductBalance(rent);
             Player cellOwner = cell.getOwner();
             cellOwner.addBalance(rent);
-            GameLogic.setOutputText(player.getName() + " paid " + cellOwner.getName() + " " + rent + " for "+ cell.getName());
+            GameLogic.setOutputText(player.getName() + " paid " + cellOwner.getName() + " RM" + rent + " for "+ cell.getName());
         } //if the player can't afford the rent
         else {
             bankruptPlayer(player, cell);
@@ -192,7 +192,7 @@ public class Bank {
             player.deductBalance(rent);
             Player cellOwner = cell.getOwner();
             cellOwner.addBalance(rent);
-            GameLogic.setOutputText(player.getName() + " paid " + cellOwner.getName() + " " + rent + " for "+ cell.getName());
+            GameLogic.setOutputText(player.getName() + " paid " + cellOwner.getName() + " RM" + rent + " for "+ cell.getName());
         } //if the player can't afford the rent
         else {
             bankruptPlayer(player, cell);

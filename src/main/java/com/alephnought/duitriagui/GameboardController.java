@@ -172,6 +172,12 @@ public class GameboardController implements Initializable {
         }
     }
 
+
+
+//    ***Button Handlers***
+
+
+
     public void onRollDiceBtnClicked(){
         Player player = GameLogic.currentPlayer;
         if (player.getCanMove()) {
@@ -181,13 +187,6 @@ public class GameboardController implements Initializable {
         }
         gameLogic.nextTurn();
     }
-
-
-
-//    ***Button Handlers***
-
-
-
     public void onBuyHouseBtnClicked(){
         Bank.buyHouse(GameLogic.currentPlayer);
     }

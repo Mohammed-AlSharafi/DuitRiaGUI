@@ -35,7 +35,7 @@ public class Action {
             case 5:
             case 39: {
                 if (Bank.canPay(player.getBalance(), Constants.TAX, true)) {
-                    GameLogic.setOutputText(player.getName()+" paid "+Constants.TAX + " for tax");
+                    GameLogic.setOutputText(player.getName()+" paid RM"+Constants.TAX + " for tax");
                     player.deductBalance(Constants.TAX);
                 } else {
                     Bank.bankruptPlayer(player, GameLogic.currentCell);
@@ -82,6 +82,7 @@ public class Action {
 
             //case player is on 'Go To Jail'
             case 31: {
+                GameLogic.setOutputText(player.getName() + " is sent to jail!");
                 player.goToJail();
                 break;
             }

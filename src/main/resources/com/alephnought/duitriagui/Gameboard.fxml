@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="gameBoardPane" prefHeight="726.0" prefWidth="1055.0" style="-fx-background-color: #CDEACE;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alephnought.duitriagui.GameboardController">
+<AnchorPane id="AnchorPane" fx:id="gameBoardPane" prefHeight="726.0" prefWidth="1055.0" style="-fx-background-color: #CDEACE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alephnought.duitriagui.GameboardController">
     <children>
       <Group layoutX="597.0" layoutY="600.0">
          <children>
@@ -176,7 +183,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land11" alignment="BOTTOM_LEFT" minHeight="54.0" minWidth="152.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="National Museum ">
+            <Label fx:id="Land11" alignment="BOTTOM_LEFT" minHeight="54.0" minWidth="152.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;">
                <font>
                   <Font name="Bell MT Bold" size="12.0" />
                </font>
@@ -189,6 +196,11 @@
                   <Font size="10.0" />
                </font>
             </Label>
+            <Label layoutX="3.0" layoutY="27.0" prefHeight="26.0" prefWidth="130.0" text="National Museum RM 1.4M " textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="10.0" />
+               </font>
+            </Label>
          </children>
       </Group>
       <Group layoutX="4.0" layoutY="387.79998779296875">
@@ -198,7 +210,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land14" alignment="BOTTOM_LEFT" layoutY="0.20001220703125" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Merdeka Sqaure">
+            <Label fx:id="Land14" alignment="BOTTOM_LEFT" layoutY="0.20001220703125" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;">
                <font>
                   <Font name="Bell MT Bold" size="12.0" />
                </font>
@@ -209,6 +221,11 @@
             <Label fx:id="Houses15" layoutX="38.0" layoutY="1.20001220703125" text="Houses=0" textFill="#00000082">
                <font>
                   <Font size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="12.0" layoutY="27.0" prefHeight="26.0" prefWidth="106.0" text="Merdeka Sqaure RM 1.4M" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="11.0" />
                </font>
             </Label>
          </children>
@@ -225,7 +242,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land16" alignment="BOTTOM_LEFT" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="A Famosa Fort">
+            <Label fx:id="Land16" alignment="BOTTOM_LEFT" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;">
                <font>
                   <Font name="Bell MT Bold" size="12.0" />
                </font>
@@ -236,6 +253,11 @@
             <Label fx:id="Houses17" layoutX="37.0" layoutY="1.0" text="Houses=0" textFill="#00000082">
                <font>
                   <Font size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="29.0" prefHeight="26.0" prefWidth="83.0" text="A Famosa Fort" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="11.0" />
                </font>
             </Label>
          </children>
@@ -597,7 +619,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label fx:id="Land15" layoutX="4.0" layoutY="335.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="KLIA2">
+      <Label fx:id="Land15" layoutX="4.0" layoutY="335.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;">
          <font>
             <Font name="Bell MT Bold" size="12.0" />
          </font>
@@ -605,7 +627,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Label fx:id="Land12" alignment="BOTTOM_CENTER" layoutX="4.0" layoutY="494.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Tenaga National Berhad">
+      <Label fx:id="Land12" alignment="BOTTOM_CENTER" layoutX="4.0" layoutY="494.0" minHeight="53.0" minWidth="151.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;">
          <font>
             <Font name="Bell MT Bold" size="12.0" />
          </font>
@@ -674,7 +696,7 @@
             <Image url="@../../../jail.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="57.0" layoutY="342.0">
+      <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="66.0" layoutY="346.0">
          <image>
             <Image url="@../../../klia.png" />
          </image>
@@ -758,7 +780,7 @@
                   <Font name="Bell MT Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="Land111" alignment="BOTTOM_LEFT" minHeight="54.0" minWidth="152.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Royal Palace">
+            <Label fx:id="Land111" alignment="BOTTOM_LEFT" minHeight="54.0" minWidth="152.0" prefHeight="54.0" prefWidth="152.0" style="-fx-background-color: transparent; -fx-border-color: black;">
                <font>
                   <Font name="Bell MT Bold" size="12.0" />
                </font>
@@ -769,6 +791,11 @@
             <Label fx:id="Houses14" layoutX="40.0" layoutY="1.0" text="Houses=0" textFill="#00000082">
                <font>
                   <Font size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="28.0" prefHeight="26.0" prefWidth="109.0" text="Royal Palace RM 1.4M" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="11.0" />
                </font>
             </Label>
          </children>
@@ -804,9 +831,9 @@
          </padding>
       </Label>
       <Button fx:id="RollDiceBtn" layoutX="892.0" layoutY="488.0" mnemonicParsing="false" onAction="#onRollDiceBtnClicked" prefHeight="47.0" prefWidth="111.0" text="Roll Dice" />
-      <Label fx:id="boardOutputLabel" alignment="CENTER" layoutX="170.0" layoutY="458.0" prefHeight="130.0" prefWidth="471.0" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="boardOutputLabel" alignment="CENTER" layoutX="170.0" layoutY="443.0" prefHeight="130.0" prefWidth="471.0" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="15.0" />
          </font></Label>
       <Label fx:id="playerNameLbl" alignment="CENTER" layoutX="823.0" layoutY="106.0" prefHeight="35.0" prefWidth="249.0" text="Name.Label" textAlignment="CENTER" wrapText="true">
          <font>
@@ -822,5 +849,20 @@
       <Line endX="95.9000244140625" endY="-40.90000534057617" layoutX="976.0" layoutY="16.0" startX="95.9000244140625" startY="710.0" />
       <Line endX="160.4000244140625" layoutX="911.0" layoutY="723.0" startX="-100.0" />
       <Button layoutX="990.0" layoutY="686.0" mnemonicParsing="false" onAction="#onEndGameBtnClicked" text="End Game" />
+      <Label layoutX="15.0" layoutY="522.0" prefHeight="26.0" prefWidth="130.0" text="Tenaga National Berhad" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Bell MT" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="136.0" layoutY="506.0" rotate="90.0" style="-fx-background-color: transparent;" text="8">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="349.0" prefHeight="26.0" prefWidth="33.0" text="KLIA2" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Bell MT" size="11.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

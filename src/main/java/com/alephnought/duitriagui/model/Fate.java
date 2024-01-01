@@ -42,7 +42,7 @@ public class Fate {
                 break;
             case 2:
                 int totalBirthdayGift = 0;
-                GameLogic.setOutputText(currentPlayer.getName() + " drew a Fate card: \"It's your birthday, you get "+Constants.BIRTHDAY_GIFT+" from each player!\"");
+                GameLogic.setOutputText(currentPlayer.getName() + " drew a Fate card: \"It's your birthday, you get "+Constants.BIRTHDAY_GIFT+"RM from each player!\"");
                 for (Player player : gameLogic.getPlayers()) {
                     if(player == currentPlayer){
                         continue;
@@ -65,6 +65,7 @@ public class Fate {
             case 4:
                 GameLogic.setOutputText(currentPlayer.getName() + " drew a Fate card: \"You are set back three spaces.\"");
                 currentPlayer.deductFromPosition(3);
+                gameLogic.getAction(currentPlayer);
                 break;
             case 5:
                 GameLogic.setOutputText(currentPlayer.getName() + " drew a Fate card: \"You have to go to jail.\"");
