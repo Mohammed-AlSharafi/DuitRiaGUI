@@ -54,6 +54,8 @@ public class StartScreenController {
     @FXML
     private Button startButton;
 
+
+    //initialize function gets called when the fxml file is loaded
     @FXML
     private void initialize() {
         playerRows.setDisable(true);
@@ -72,9 +74,12 @@ public class StartScreenController {
         TextFormatter<String> textFormatter = new TextFormatter<>(filter);
         customRoundsTextField.setTextFormatter(textFormatter);
     }
+    //   set the stage for the controller
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
+    //   when start button is clicked
     public void onStartButtonClicked() {
         RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
         if (selectedRadioButton != null) {
@@ -99,8 +104,9 @@ public class StartScreenController {
             if(customRoundsCheckBox.isSelected()){
                 if(customRoundsTextField.getText().equals("")) {
                     GameLogic.chosenNumberOfRounds = 0; //set to 0 so that game continues as if custom rounds is not selected.
+                }else {
+                    GameLogic.chosenNumberOfRounds = Integer.parseInt(customRoundsTextField.getText());
                 }
-                GameLogic.chosenNumberOfRounds = Integer.parseInt(customRoundsTextField.getText());
             }
         try {
             // Load the FXML file for the second window
@@ -122,6 +128,7 @@ public class StartScreenController {
     }
     }
 
+    //   when custom rounds checkbox is clicked
     public void onCustomRoundsCheckBoxClicked() {
         if (customRoundsCheckBox.isSelected()) {
             customRoundsTextField.setDisable(false);
@@ -129,6 +136,9 @@ public class StartScreenController {
             customRoundsTextField.setDisable(true);
         }
     }
+
+    // radio buttons handler, it checks which radio button is selected and enables
+    // the corresponding textfields and disables the rest.
     @FXML
     private void handleRadioButtonAction() {
         startButton.setDisable(false);
@@ -147,6 +157,8 @@ public class StartScreenController {
             }
         }
     }
+
+    //   get the textfield by index by using reflection.
 @FXML
     private TextField getTextFieldByIndex(int index) {
         try {
@@ -156,7 +168,7 @@ public class StartScreenController {
             field.setAccessible(true);
             return (TextField) field.get(this);
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace(); // Handle the exception appropriately
+            e.printStackTrace();
             return null;
         }
     }

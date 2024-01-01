@@ -19,8 +19,7 @@ public class Bank {
     public static boolean canPay(int balance, int item, boolean loan) {
         if (loan) {
             return balance + Constants.LOAN >= item;
-        } 
-        //check later
+        }
         else {
             return balance >= item;
         }
@@ -34,9 +33,10 @@ public class Bank {
     }
 
     public static void sellProperty(Player player) {
+        Cell chosenCell;
+
         Cell[] ownedProperties = GameLogic.getOwnedProperties(player);
         Set[] ownedSets = GameLogic.getOwnedSets(player);
-        Cell chosenCell;
 
         //check if player has any property
         if (ownedProperties.length <= 0) {
@@ -61,10 +61,10 @@ public class Bank {
     }
 
     public static void buyHouse(Player player) {
-        Set[] ownedSets = GameLogic.getOwnedSets(player);
         Set chosenSet;
-        Cell[] chosenSetCells = null;
         Cell chosenCell;
+        Cell[] chosenSetCells = null;
+        Set[] ownedSets = GameLogic.getOwnedSets(player);
         boolean allHousesAreFour;
 
         if (player.getLapNumber() < 3) {
@@ -134,8 +134,8 @@ public class Bank {
     }
 
     public static void sellHouse(Player player) {
-        Cell[] ownedEnhancedProperties = GameLogic.getOwnedEnhancedProperties(player);
         Cell chosenCell;
+        Cell[] ownedEnhancedProperties = GameLogic.getOwnedEnhancedProperties(player);
 
         if (ownedEnhancedProperties.length == 0) {
             GameboardController.showErrorDialog("you do not have houses to sell");
@@ -186,7 +186,6 @@ public class Bank {
     }
     
     public static void payRent(Player player, Cell cell, int rent){
-        
         //if the player can afford rent
         if (canPay(player.getBalance(), rent, true)) {
             player.deductBalance(rent);
