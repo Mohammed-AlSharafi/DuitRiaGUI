@@ -48,19 +48,19 @@ public class Action {
                 if (player.getIsJailed()) {
                     int[] rolledNumber = Dice.rollDice();
                     if (rolledNumber[0] == rolledNumber[1]) {
-                        gameLogic.rollAndGetAction(player, rolledNumber);
                         GameLogic.setOutputText(player.getName() + " rolled a double " + rolledNumber[0] + " so player got out of jail!");
                         player.bailFromJail();
+                        gameLogic.rollAndGetAction(player, rolledNumber);
                     } else {
                         if (Bank.canPay(player.getBalance(), Constants.BAIL, true)) {
                             player.deductBalance(Constants.BAIL);
                             GameLogic.setOutputText(player.getName() + " failed to roll a double. Player fined "+ Constants.BAIL + " as bail.");
                             player.bailFromJail();
+                            gameLogic.rollAndGetAction(player, rolledNumber);
                         } else {
                             Bank.bankruptPlayer(player, GameLogic.currentCell);
                         }
                     }
-                    gameLogic.rollAndGetAction(player);
                 }
                 break;
             }
@@ -97,8 +97,8 @@ public class Action {
                         break;
                     }
                     //check if player has enough money
-                    if (Bank.canPay(player.getBalance(), price)) {
-                            boolean isPlayerBuyProperty = GameboardController.showChoiceDialog("Do you want to buy this property?");
+                    if (Bank.canPay(player.getBalance(), price, false)) {
+                            boolean isPlayerBuyProperty = GameboardController.showChoiceDialog("Do you want to buy "+ GameLogic.currentCell.getName() +" for RM"+ price +"?");
                             if (isPlayerBuyProperty){
                                 Bank.buyProperty(player, GameLogic.currentCell);
                                 GameLogic.setOutputText(player.getName() + " bought " + GameLogic.currentCell.getName() + " for RM"+ GameLogic.currentCell.getPrice() + "!");

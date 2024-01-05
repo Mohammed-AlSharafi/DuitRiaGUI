@@ -10,11 +10,6 @@ import javafx.scene.paint.Color;
 import java.util.Scanner;
 public class Bank {
 
-    // check if player can pay for an item with balance given.
-    public static boolean canPay(int balance, int item) {
-        return balance >= item;
-    }
-
     //overloaded method to check if player can pay for an item with loan given.
     public static boolean canPay(int balance, int item, boolean loan) {
         if (loan) {
@@ -26,10 +21,9 @@ public class Bank {
     }
 
     public static void buyProperty(Player player, Cell cell) {
-        if(canPay(player.getBalance(), cell.getPrice())) {
             cell.setOwner(player);
             player.deductBalance(cell.getPrice());
-        }
+            GameLogic.setOutputText(player.getName() + " bought " + cell.getName() + " for RM" + cell.getPrice());
     }
 
     public static void sellProperty(Player player) {
@@ -58,6 +52,7 @@ public class Bank {
         }
         chosenCell.setOwner(null);
         player.addBalance(chosenCell.getPrice() / 2);
+        GameLogic.setOutputText(player.getName() + " sold " + chosenCell.getName() + " for RM" + chosenCell.getPrice() / 2);
     }
 
     public static void buyHouse(Player player) {
@@ -71,7 +66,7 @@ public class Bank {
             GameboardController.showErrorDialog("you can only purchase houses on the third round and above.");
             return;
         }
-        if (!canPay(player.getBalance(), Constants.HOUSE_PRICE)) {
+        if (!canPay(player.getBalance(), Constants.HOUSE_PRICE, false)) {
             GameboardController.showErrorDialog("you can not afford a house.");
             return;
         }
@@ -114,6 +109,7 @@ public class Bank {
             chosenSet.sortCells();
             chosenSetCells[0].addHouse();
             player.deductBalance(Constants.HOUSE_PRICE);
+            GameLogic.setOutputText(player.getName() + " bought a house on " + chosenSetCells[0].getName() + " for RM" + Constants.HOUSE_PRICE);
         }
 //        if player does not want to build evenly.
         else if (!chosenSet.getBuildEvenly()) {
@@ -126,6 +122,7 @@ public class Bank {
 
             if (chosenCell.getHouseNumber() < 4) {
                 chosenCell.addHouse();
+                GameLogic.setOutputText(player.getName() + " bought a house on " + chosenCell.getName() + " for RM" + Constants.HOUSE_PRICE);
                 player.deductBalance(Constants.HOUSE_PRICE);
             } else {
                 GameboardController.showErrorDialog("you can not build any more houses on this property");
@@ -151,6 +148,7 @@ public class Bank {
 
         chosenCell.removeHouse();
         player.addBalance(Constants.HOUSE_PRICE / 2);
+        GameLogic.setOutputText(player.getName() + " sold a house on " + chosenCell.getName() + " for RM" + Constants.HOUSE_PRICE / 2);
     }
 
     public static int calculateRent(Cell cell) {
