@@ -51,7 +51,8 @@ public class GameLogic {
 
     //[GUI] set the player balance label in the gameboard
     public static void setPlayerBalanceLbl(int balance){
-        gameboardController.setPlayerBalanceLbl("RM "+balance);
+        String formattedNumber = formatNumber(balance);
+        gameboardController.setPlayerBalanceLbl("RM "+formattedNumber);
     }
 
     //[GUI] set the player color circle in the gameboard
@@ -254,5 +255,17 @@ public class GameLogic {
 
         GameboardController.showListDialog(scores.toArray(), "Scoreboard", "Players Scoreboard:");
         System.exit(0);
+    }
+    public static String formatNumber(int num) {
+        String[] suffixes = {"", "K", "M", "B", "T"};
+        double number = num;
+
+        int index = 0;
+        while (Math.abs(number) >= 1000 && index < suffixes.length - 1) {
+            number /= 1000;
+            index++;
+        }
+
+        return String.format("%.1f%s", number, suffixes[index]);
     }
 }
